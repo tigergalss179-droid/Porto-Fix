@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Muhammad Galih Seto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Galih</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="cv.html">CV</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Quick Links</h3>
+            <button class="sidebar-close" onclick="toggleSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <!-- Contact -->
+            <div class="sidebar-section">
+                <h4><i class="fas fa-envelope"></i> Contact Me</h4>
+                <a href="mailto:tigergalss179@gmail.com" class="sidebar-link">
+                    <i class="fas fa-paper-plane"></i>
+                    tigergalss179@gmail.com
+                </a>
+            </div>
+
+            <!-- Gallery -->
+            <div class="sidebar-section">
+                <h4><i class="fas fa-images"></i> My Gallery</h4>
+                <a href="gallery.html" class="sidebar-link active">
+                    <i class="fas fa-camera"></i>
+                    Hobby Gallery
+                </a>
+            </div>
+
+            <!-- Shop -->
+            <div class="sidebar-section">
+                <h4><i class="fas fa-shopping-bag"></i> My Shop</h4>
+                <a href="https://s.id/draculis" target="_blank" class="sidebar-link">
+                    <i class="fas fa-store"></i>
+                    Visit My Shop
+                </a>
+            </div>
+
+            <!-- Social Media -->
+            <div class="sidebar-section">
+                <h4><i class="fas fa-share-alt"></i> Social Media</h4>
+                <div class="sidebar-social">
+                    <a href="https://www.instagram.com/gagagulih?igsh=bTI5NmI1ZzBmeXVp" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/galihseto" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:tigergalss179@gmail.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="fade-in">Gallery Hobi Saya</h1>
+            <p class="fade-in-delay">Dokumentasi aktivitas dan hobi yang saya sukai</p>
+        </div>
+    </section>
+
+    <!-- Gallery Content -->
+    <section class="gallery-page-content">
+        <div class="container">
+            <!-- Category: Gym/Workout -->
+            <div class="gallery-category fade-in">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>Gym & Workout</h2>
+                        <p>Aktivitas olahraga dan fitness untuk menjaga kesehatan</p>
+                    </div>
+                </div>
+                <div class="category-gallery">
+                    <!-- Placeholder - Ganti dengan foto Anda -->
+                    <div class="gallery-photo" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/5D69E2/ffffff?text=Gym+Photo+1', 'Workout Session 1')">
+                        <img src="https://via.placeholder.com/400x300/5D69E2/ffffff?text=Gym+1" alt="Gym 1">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-photo" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/7B5BB1/ffffff?text=Gym+Photo+2', 'Workout Session 2')">
+                        <img src="https://via.placeholder.com/400x300/7B5BB1/ffffff?text=Gym+2" alt="Gym 2">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-photo" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/8C4A9E/ffffff?text=Gym+Photo+3', 'Workout Session 3')">
+                        <img src="https://via.placeholder.com/400x300/8C4A9E/ffffff?text=Gym+3" alt="Gym 3">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Sepeda -->
+            <div class="gallery-category fade-in-delay">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-bicycle"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>Bersepeda</h2>
+                        <p>Menjelajahi tempat-tempat baru dengan sepeda</p>
+                    </div>
+                </div>
+                <div class="category-gallery">
+                    <!-- Placeholder - Ganti dengan foto Anda -->
+                    <div class="gallery-photo" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/2E3192/ffffff?text=Cycling+Photo+1', 'Cycling Adventure 1')">
+                        <img src="https://via.placeholder.com/400x300/2E3192/ffffff?text=Cycling+1" alt="Cycling 1">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-photo" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/1BFFFF/333333?text=Cycling+Photo+2', 'Cycling Adventure 2')">
+                        <img src="https://via.placeholder.com/400x300/1BFFFF/333333?text=Cycling+2" alt="Cycling 2">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-photo" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/00D4FF/ffffff?text=Cycling+Photo+3', 'Cycling Adventure 3')">
+                        <img src="https://via.placeholder.com/400x300/00D4FF/ffffff?text=Cycling+3" alt="Cycling 3">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category: Liburan -->
+            <div class="gallery-category fade-in-delay-2">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="category-info">
+                        <h2>Liburan & Traveling</h2>
+                        <p>Momen-momen indah saat berlibur dan menjelajah</p>
+                    </div>
+                </div>
+                <div class="category-gallery">
+                    <!-- Placeholder - Ganti dengan foto Anda -->
+                    <div class="gallery-photo" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/FF6B6B/ffffff?text=Travel+Photo+1', 'Travel Moment 1')">
+                        <img src="https://via.placeholder.com/400x300/FF6B6B/ffffff?text=Travel+1" alt="Travel 1">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-photo" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/FFE66D/333333?text=Travel+Photo+2', 'Travel Moment 2')">
+                        <img src="https://via.placeholder.com/400x300/FFE66D/333333?text=Travel+2" alt="Travel 2">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-photo" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/FF6B9D/ffffff?text=Travel+Photo+3', 'Travel Moment 3')">
+                        <img src="https://via.placeholder.com/400x300/FF6B9D/ffffff?text=Travel+3" alt="Travel 3">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Info -->
+            <div class="upload-info fade-in-delay-3">
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>Cara Menambah Foto</h3>
+                    <p>Upload foto Anda ke Imgur, lalu ganti URL placeholder dengan link foto Anda di file gallery.html</p>
+                    <a href="IMGUR_GUIDE.md" class="btn btn-secondary">Lihat Panduan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Lightbox -->
+    <div id="photoLightbox" class="lightbox-modal">
+        <span class="lightbox-close" onclick="closePhotoLightbox()">&times;</span>
+        <div class="lightbox-content">
+            <img id="photoLightboxImage" src="" alt="">
+            <div class="lightbox-caption" id="photoLightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by Muhammad Galih Seto © 2026</p>
+            <p class="footer-subtitle">Thanks for visiting! Feel free to reach out 🚀</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

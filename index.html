@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Galih Seto - Personal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Galih</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="cv.html">CV</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="fade-in">Muhammad Galih Seto</h1>
+                <p class="tagline fade-in-delay">Interested in CyberSec and Networking</p>
+                <p class="description fade-in-delay-2">
+                    Berfokus mengembangkan kemampuan di bidang network engineering sebagai persiapan menghadapi dunia kerja di industri IT.
+                </p>
+                <div class="hero-buttons fade-in-delay-3">
+                    <a href="portfolio.html" class="btn btn-primary">Lihat Portfolio</a>
+                    <a href="cv.html" class="btn btn-secondary">Download CV</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in-delay-2">
+                <div class="image-wrapper" onclick="openSecretPhoto()">
+                    <img id="heroProfileImage" src="https://i.imgur.com/mcW08Ge.jpg" alt="Muhammad Galih Seto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Info Section -->
+    <section class="quick-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card clickable-card" onclick="openInfoModal('education')">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Pendidikan</h3>
+                    <p>SMK N 7 Semarang</p>
+                    <p class="small">Jurusan SIJA</p>
+                    <div class="card-hint">
+                        <i class="fas fa-mouse-pointer"></i> Click untuk detail
+                    </div>
+                </div>
+                <div class="info-card clickable-card" onclick="openInfoModal('focus')">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Fokus</h3>
+                    <p>Cyber Security</p>
+                    <p class="small">& Networking</p>
+                    <div class="card-hint">
+                        <i class="fas fa-mouse-pointer"></i> Click untuk detail
+                    </div>
+                </div>
+                <div class="info-card clickable-card" onclick="openInfoModal('goals')">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Cita-cita</h3>
+                    <p>Bekerja di Luar Negeri</p>
+                    <p class="small">& Traveling Dunia</p>
+                    <div class="card-hint">
+                        <i class="fas fa-mouse-pointer"></i> Click untuk detail
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Modals -->
+    <!-- Education Modal -->
+    <div id="educationModal" class="info-modal">
+        <div class="info-modal-content">
+            <span class="info-modal-close" onclick="closeInfoModal('education')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h2>Pendidikan</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="https://i.imgur.com/HMBBpAB.png" alt="SMK N 7 Semarang">
+                    <div class="image-caption">
+                        <i class="fas fa-map-marker-alt"></i> Jl. Simpang Lima No.1, Mugassari, Semarang
+                    </div>
+                </div>
+                <div class="modal-text">
+                    <h3>SMK Negeri 7 Semarang</h3>
+                    <p class="modal-subtitle">Jurusan SIJA (Sistem Informatika, Jaringan & Aplikasi)</p>
+                    <p class="modal-description">
+                        Focused on routing, network configuration, and building reliable infrastructure systems. 
+                        Di sekolah ini, saya mempelajari dasar-dasar networking, konfigurasi perangkat jaringan, 
+                        troubleshooting, dan keamanan sistem. Pengalaman hands-on dengan Cisco Packet Tracer dan 
+                        berbagai tools networking lainnya membantu saya memahami bagaimana infrastruktur jaringan 
+                        bekerja dalam dunia nyata.
+                    </p>
+                    <div class="modal-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Network Configuration & Routing</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Infrastructure Systems</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Cisco Packet Tracer</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Network Security Basics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Focus Modal -->
+    <div id="focusModal" class="info-modal">
+        <div class="info-modal-content">
+            <span class="info-modal-close" onclick="closeInfoModal('focus')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h2>Fokus Keahlian</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="https://i.imgur.com/4OuHA28.png" alt="Cyber Security & Networking">
+                    <div class="image-caption">
+                        <i class="fas fa-shield-alt"></i> Cyber Security & Networking
+                    </div>
+                </div>
+                <div class="modal-text">
+                    <h3>Cyber Security & Networking</h3>
+                    <p class="modal-subtitle">Keamanan Jaringan & Infrastruktur</p>
+                    <p class="modal-description">
+                        Saya fokus pada bidang keamanan jaringan dan pengelolaan infrastruktur IT. 
+                        Minat saya meliputi network security, routing protocols, firewall configuration, 
+                        dan monitoring sistem jaringan. Saya terus belajar tentang best practices dalam 
+                        mengamankan jaringan dan membangun infrastruktur yang reliable dan scalable.
+                    </p>
+                    <div class="modal-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Network Security & Firewall</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Routing & Switching</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Infrastructure Management</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Network Monitoring & Troubleshooting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goals Modal -->
+    <div id="goalsModal" class="info-modal">
+        <div class="info-modal-content">
+            <span class="info-modal-close" onclick="closeInfoModal('goals')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h2>Career Goals</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="https://i.imgur.com/HmLW55M.png" alt="Career Goals">
+                    <div class="image-caption">
+                        <i class="fas fa-map-marked-alt"></i> Europe & International
+                    </div>
+                </div>
+                <div class="modal-text">
+                    <h3>Karir Internasional di Bidang IT</h3>
+                    <p class="modal-subtitle">Network Engineer / Infrastructure Specialist</p>
+                    <p class="modal-description">
+                        Tujuan jangka panjang saya adalah membangun karir di industri IT, khususnya dalam 
+                        infrastruktur jaringan dan operasi sistem. Saya ingin bekerja di lingkungan internasional, 
+                        terutama di Eropa, di mana saya dapat memperoleh pengalaman global dan meningkatkan 
+                        keterampilan teknis serta profesional saya.
+                    </p>
+                    <p class="modal-description">
+                        Saya tertarik pada peran seperti Network Engineer atau Infrastructure Specialist, di mana 
+                        saya dapat merancang, mengelola, dan memelihara sistem jaringan yang andal. Bekerja di 
+                        luar negeri tidak hanya akan meningkatkan keahlian teknis saya, tetapi juga memperluas 
+                        pemahaman budaya dan jaringan profesional saya.
+                    </p>
+                    <div class="modal-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Network Engineer / Infrastructure Specialist</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Lingkungan Kerja Internasional (Eropa)</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Merancang & Mengelola Sistem Jaringan</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Pengalaman Global & Pertumbuhan Profesional</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Quick Links</h3>
+            <button class="sidebar-close" onclick="toggleSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <!-- My Phone -->
+            <div class="sidebar-section">
+                <h4><i class="fas fa-mobile-alt"></i> My Phone</h4>
+                <button class="sidebar-link" onclick="openPhone()" style="width: 100%; text-align: left; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-mobile-alt"></i>
+                    Open My Phone
+                </button>
+            </div>
+
+            <!-- Contact -->
+            <div class="sidebar-section">
+                <h4><i class="fas fa-envelope"></i> Contact</h4>
+                <a href="mailto:tigergalss179@gmail.com" class="sidebar-link">
+                    <i class="fas fa-paper-plane"></i>
+                    tigergalss179@gmail.com
+                </a>
+            </div>
+
+            <!-- Social Media & Shop - Icons Only -->
+            <div class="sidebar-section sidebar-footer">
+                <div class="sidebar-social-icons">
+                    <a href="https://s.id/draculis" target="_blank" title="Shop" class="social-icon-sidebar">
+                        <i class="fas fa-shopping-bag"></i>
+                    </a>
+                    <a href="https://github.com/galihseto" target="_blank" title="GitHub" class="social-icon-sidebar">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/gagagulih?igsh=bTI5NmI1ZzBmeXVp" target="_blank" title="Instagram" class="social-icon-sidebar">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:tigergalss179@gmail.com" title="Email" class="social-icon-sidebar">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Secret Photo Modal -->
+    <div id="secretPhotoModal" class="secret-photo-modal">
+        <div class="secret-photo-content">
+            <span class="secret-photo-close" onclick="closeSecretPhoto()">&times;</span>
+            <div class="secret-photo-wrapper">
+                <img src="https://i.imgur.com/xiZu5E2.png" alt="Secret Photo">
+                <div class="secret-photo-caption">
+                    <h3>🎭 Easter Egg Found!</h3>
+                    <p>Kamu menemukan foto rahasia! Klik tombol di bawah untuk mengubah tema.</p>
+                    <button class="theme-toggle-btn" onclick="toggleDarkTheme()">
+                        <i class="fas fa-moon"></i> <span id="themeText">Aktifkan Dark Mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phone Modal -->
+    <div id="phoneModal" class="phone-modal">
+        <div class="phone-container">
+            <!-- Phone Frame -->
+            <div class="phone-frame">
+                <!-- Phone Screen -->
+                <div class="phone-screen" id="phoneScreen">
+                    <!-- Home Screen -->
+                    <div class="phone-home active" id="phoneHome">
+                        <div class="phone-status-bar">
+                            <span class="phone-time" id="phoneTime">12:00</span>
+                            <div class="phone-icons">
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                        </div>
+                        <div class="phone-wallpaper">
+                            <h2 class="phone-greeting">Galih's Phone</h2>
+                            <p class="phone-date" id="phoneDate">Monday, January 1</p>
+                        </div>
+                        <div class="phone-apps">
+                            <div class="phone-app" onclick="openApp('schedule')">
+                                <div class="app-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <span>Jadwal</span>
+                            </div>
+                            <div class="phone-app" onclick="openApp('tasks')">
+                                <div class="app-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <span>Tasks</span>
+                            </div>
+                            <div class="phone-app" onclick="openApp('game')">
+                                <div class="app-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <span>Game</span>
+                            </div>
+                        </div>
+                        <div class="phone-home-button" onclick="closePhone()">
+                            <div class="home-indicator"></div>
+                        </div>
+                    </div>
+
+                    <!-- Schedule App -->
+                    <div class="phone-app-screen" id="scheduleApp">
+                        <div class="app-header">
+                            <button class="app-back" onclick="closeApp()"><i class="fas fa-arrow-left"></i></button>
+                            <h3>Jadwal Mingguan</h3>
+                            <div></div>
+                        </div>
+                        <div class="app-content">
+                            <div class="calendar-grid" id="calendarGrid">
+                                <div class="calendar-day" onclick="showDaySchedule('senin')">
+                                    <div class="day-header">Senin</div>
+                                    <div class="day-icon">📚</div>
+                                </div>
+                                <div class="calendar-day" onclick="showDaySchedule('selasa')">
+                                    <div class="day-header">Selasa</div>
+                                    <div class="day-icon">💻</div>
+                                </div>
+                                <div class="calendar-day" onclick="showDaySchedule('rabu')">
+                                    <div class="day-header">Rabu</div>
+                                    <div class="day-icon">🌐</div>
+                                </div>
+                                <div class="calendar-day" onclick="showDaySchedule('kamis')">
+                                    <div class="day-header">Kamis</div>
+                                    <div class="day-icon">💪</div>
+                                </div>
+                                <div class="calendar-day" onclick="showDaySchedule('jumat')">
+                                    <div class="day-header">Jumat</div>
+                                    <div class="day-icon">🔍</div>
+                                </div>
+                                <div class="calendar-day weekend" onclick="showDaySchedule('sabtu')">
+                                    <div class="day-header">Sabtu</div>
+                                    <div class="day-icon">🎮</div>
+                                </div>
+                                <div class="calendar-day weekend" onclick="showDaySchedule('minggu')">
+                                    <div class="day-header">Minggu</div>
+                                    <div class="day-icon">😴</div>
+                                </div>
+                            </div>
+                            <p class="schedule-hint">👆 Klik salah satu hari untuk melihat jadwal</p>
+                        </div>
+                    </div>
+
+                    <!-- Schedule Detail Screen -->
+                    <div class="phone-app-screen" id="scheduleDetailScreen">
+                        <div class="app-header">
+                            <button class="app-back" onclick="backToCalendar()"><i class="fas fa-arrow-left"></i></button>
+                            <h3 id="scheduleDetailTitle">Jadwal</h3>
+                            <div></div>
+                        </div>
+                        <div class="app-content">
+                            <div id="scheduleDetailContent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Tasks App -->
+                    <div class="phone-app-screen" id="tasksApp">
+                        <div class="app-header">
+                            <button class="app-back" onclick="closeApp()"><i class="fas fa-arrow-left"></i></button>
+                            <h3>My Tasks</h3>
+                            <div></div>
+                        </div>
+                        <div class="app-content">
+                            <div class="task-list">
+                                <div class="task-item">
+                                    <input type="checkbox" id="task1" checked>
+                                    <label for="task1">Belajar Cisco Packet Tracer</label>
+                                </div>
+                                <div class="task-item">
+                                    <input type="checkbox" id="task2" checked>
+                                    <label for="task2">Update Portfolio Website</label>
+                                </div>
+                                <div class="task-item">
+                                    <input type="checkbox" id="task3">
+                                    <label for="task3">Latihan Network Security</label>
+                                </div>
+                                <div class="task-item">
+                                    <input type="checkbox" id="task4">
+                                    <label for="task4">Workout di Gym</label>
+                                </div>
+                                <div class="task-item">
+                                    <input type="checkbox" id="task5">
+                                    <label for="task5">Belajar Python Basics</label>
+                                </div>
+                                <div class="task-item">
+                                    <input type="checkbox" id="task6">
+                                    <label for="task6">Editing Video Project</label>
+                                </div>
+                                <div class="task-item">
+                                    <input type="checkbox" id="task7">
+                                    <label for="task7">Cycling Weekend</label>
+                                </div>
+                            </div>
+                            <div class="task-progress">
+                                <h4>Progress Today</h4>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="taskProgress" style="width: 28%"></div>
+                                </div>
+                                <p class="progress-text"><span id="taskCompleted">2</span> of <span id="taskTotal">7</span> completed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Game App -->
+                    <div class="phone-app-screen" id="gameApp">
+                        <div class="app-header">
+                            <button class="app-back" onclick="closeApp()"><i class="fas fa-arrow-left"></i></button>
+                            <h3>� Stack Tower</h3>
+                            <div></div>
+                        </div>
+                        
+                        <!-- Loading Screen -->
+                        <div class="game-loading" id="gameLoading">
+                            <div class="loading-content">
+                                <div class="loading-icon">🎮</div>
+                                <h3>Stack Tower</h3>
+                                <div class="loading-bar">
+                                    <div class="loading-progress" id="loadingProgress"></div>
+                                </div>
+                                <p class="loading-text" id="loadingText">Initializing Simulation...</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Game Content -->
+                        <div class="app-content game-content" id="gameContent" style="display: none;">
+                            <div class="game-container">
+                                <div class="game-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Score</span>
+                                        <span class="stat-value" id="gameScore">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Best</span>
+                                        <span class="stat-value" id="gameBest">0</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="game-canvas-wrapper">
+                                    <canvas id="gameCanvas" width="280" height="400"></canvas>
+                                    <div class="game-overlay" id="gameOverlay">
+                                        <div class="game-start-message">
+                                            <h3>🎯 Stack Tower</h3>
+                                            <p>Tap untuk mulai!</p>
+                                            <p class="game-hint">Tumpuk balok setinggi mungkin</p>
+                                        </div>
+                                    </div>
+                                    <div class="game-over-overlay" id="gameOverOverlay" style="display: none;">
+                                        <div class="game-over-content">
+                                            <h2>🎮 Game Over!</h2>
+                                            <p class="final-score">Score: <span id="finalScore">0</span></p>
+                                            <button class="game-button" onclick="restartStackGame()">
+                                                <i class="fas fa-redo"></i> Main Lagi
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="game-button" id="stackButton" onclick="stackBlock()">
+                                    <i class="fas fa-hand-pointer"></i> TAP!
+                                </button>
+                                
+                                <div class="game-instructions">
+                                    <p>💡 Tap saat balok sejajar untuk menumpuk!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="phone-close" onclick="closePhone()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by Muhammad Galih Seto © 2026</p>
+            <p class="footer-subtitle">Thanks for visiting! Feel free to reach out 🚀</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
