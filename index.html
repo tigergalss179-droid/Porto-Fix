@@ -4,21 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Galih Seto - Personal Portfolio</title>
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://i.imgur.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Async load Font Awesome for non-blocking render -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Galih</div>
+            <div class="logo" data-i18n="nav.logo">Galih</div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="cv.html">CV</a></li>
+                <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav.about">About Me</a></li>
+                <li><a href="skills.html" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+                <li><a href="cv.html" data-i18n="nav.cv">CV</a></li>
             </ul>
+            
+            <!-- Theme & Language Controls -->
+            <div class="nav-controls">
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle-nav" id="themeToggleNav" aria-label="Toggle theme" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="id" aria-label="Bahasa Indonesia">
+                        <span class="flag-icon">🇮🇩</span>
+                        <span class="lang-text">ID</span>
+                    </button>
+                    <button class="lang-btn" data-lang="en" aria-label="English">
+                        <span class="flag-icon">🇬🇧</span>
+                        <span class="lang-text">EN</span>
+                    </button>
+                </div>
+            </div>
+            
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -31,19 +59,19 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1 class="fade-in">Muhammad Galih Seto</h1>
-                <p class="tagline fade-in-delay">Interested in CyberSec and Networking</p>
-                <p class="description fade-in-delay-2">
+                <h1 class="fade-in" data-i18n="home.hero.name">Muhammad Galih Seto</h1>
+                <p class="tagline fade-in-delay" data-i18n="home.hero.tagline">Interested in CyberSec and Networking</p>
+                <p class="description fade-in-delay-2" data-i18n="home.hero.description">
                     Berfokus mengembangkan kemampuan di bidang network engineering sebagai persiapan menghadapi dunia kerja di industri IT.
                 </p>
                 <div class="hero-buttons fade-in-delay-3">
-                    <a href="portfolio.html" class="btn btn-primary">Lihat Portfolio</a>
-                    <a href="cv.html" class="btn btn-secondary">Download CV</a>
+                    <a href="portfolio.html" class="btn btn-primary" data-i18n="home.hero.btn_portfolio">Lihat Portfolio</a>
+                    <a href="cv.html" class="btn btn-secondary" data-i18n="home.hero.btn_cv">Download CV</a>
                 </div>
             </div>
             <div class="hero-image fade-in-delay-2">
-                <div class="image-wrapper" onclick="openSecretPhoto()">
-                    <img id="heroProfileImage" src="https://i.imgur.com/mcW08Ge.jpg" alt="Muhammad Galih Seto">
+                <div class="image-wrapper">
+                    <img id="heroProfileImage" src="https://i.imgur.com/mcW08Ge.jpg" alt="Muhammad Galih Seto" fetchpriority="high" width="420" height="420">
                 </div>
             </div>
         </div>
@@ -57,33 +85,33 @@
                     <div class="icon-wrapper">
                         <i class="fas fa-user-graduate"></i>
                     </div>
-                    <h3>Pendidikan</h3>
-                    <p>SMK N 7 Semarang</p>
-                    <p class="small">Jurusan SIJA</p>
+                    <h3 data-i18n="home.card.education.title">Pendidikan</h3>
+                    <p data-i18n="home.card.education.school">SMK N 7 Semarang</p>
+                    <p class="small" data-i18n="home.card.education.major">Jurusan SIJA</p>
                     <div class="card-hint">
-                        <i class="fas fa-mouse-pointer"></i> Click untuk detail
+                        <i class="fas fa-mouse-pointer"></i> <span data-i18n="home.card.hint">Click untuk detail</span>
                     </div>
                 </div>
                 <div class="info-card clickable-card" onclick="openInfoModal('focus')">
                     <div class="icon-wrapper">
                         <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3>Fokus</h3>
-                    <p>Cyber Security</p>
-                    <p class="small">& Networking</p>
+                    <h3 data-i18n="home.card.focus.title">Fokus</h3>
+                    <p data-i18n="home.card.focus.text">Cyber Security</p>
+                    <p class="small" data-i18n="home.card.focus.sub">& Networking</p>
                     <div class="card-hint">
-                        <i class="fas fa-mouse-pointer"></i> Click untuk detail
+                        <i class="fas fa-mouse-pointer"></i> <span data-i18n="home.card.hint">Click untuk detail</span>
                     </div>
                 </div>
                 <div class="info-card clickable-card" onclick="openInfoModal('goals')">
                     <div class="icon-wrapper">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h3>Cita-cita</h3>
-                    <p>Bekerja di Luar Negeri</p>
-                    <p class="small">& Traveling Dunia</p>
+                    <h3 data-i18n="home.card.goals.title">Cita-cita</h3>
+                    <p data-i18n="home.card.goals.text">Bekerja di Luar Negeri</p>
+                    <p class="small" data-i18n="home.card.goals.sub">& Traveling Dunia</p>
                     <div class="card-hint">
-                        <i class="fas fa-mouse-pointer"></i> Click untuk detail
+                        <i class="fas fa-mouse-pointer"></i> <span data-i18n="home.card.hint">Click untuk detail</span>
                     </div>
                 </div>
             </div>
@@ -103,7 +131,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-image">
-                    <img src="https://i.imgur.com/HMBBpAB.png" alt="SMK N 7 Semarang">
+                    <img src="https://i.imgur.com/HMBBpAB.png" alt="SMK N 7 Semarang" loading="lazy" width="850" height="320">
                     <div class="image-caption">
                         <i class="fas fa-map-marker-alt"></i> Jl. Simpang Lima No.1, Mugassari, Semarang
                     </div>
@@ -153,7 +181,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-image">
-                    <img src="https://i.imgur.com/4OuHA28.png" alt="Cyber Security & Networking">
+                    <img src="https://i.imgur.com/4OuHA28.png" alt="Cyber Security & Networking" loading="lazy" width="850" height="320">
                     <div class="image-caption">
                         <i class="fas fa-shield-alt"></i> Cyber Security & Networking
                     </div>
@@ -202,7 +230,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-image">
-                    <img src="https://i.imgur.com/HmLW55M.png" alt="Career Goals">
+                    <img src="https://i.imgur.com/HmLW55M.png" alt="Career Goals" loading="lazy" width="850" height="320">
                     <div class="image-caption">
                         <i class="fas fa-map-marked-alt"></i> Europe & International
                     </div>
@@ -306,7 +334,7 @@
         <div class="secret-photo-content">
             <span class="secret-photo-close" onclick="closeSecretPhoto()">&times;</span>
             <div class="secret-photo-wrapper">
-                <img src="https://i.imgur.com/xiZu5E2.png" alt="Secret Photo">
+                <img src="https://i.imgur.com/xiZu5E2.png" alt="Secret Photo" loading="lazy" width="600" height="600">
                 <div class="secret-photo-caption">
                     <h3>🎭 Easter Egg Found!</h3>
                     <p>Kamu menemukan foto rahasia! Klik tombol di bawah untuk mengubah tema.</p>
@@ -540,11 +568,12 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Made with ❤️ by Muhammad Galih Seto © 2026</p>
-            <p class="footer-subtitle">Thanks for visiting! Feel free to reach out 🚀</p>
+            <p data-i18n="footer.copyright">Made with ❤️ by Muhammad Galih Seto © 2026</p>
+            <p class="footer-subtitle" data-i18n="footer.subtitle">Thanks for visiting! Feel free to reach out 🚀</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="translations.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

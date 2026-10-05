@@ -11,14 +11,35 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Galih</div>
+            <div class="logo" data-i18n="nav.logo">Galih</div>
             <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About Me</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="cv.html">CV</a></li>
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" class="active" data-i18n="nav.about">About Me</a></li>
+                <li><a href="skills.html" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+                <li><a href="cv.html" data-i18n="nav.cv">CV</a></li>
             </ul>
+            
+            <!-- Theme & Language Controls -->
+            <div class="nav-controls">
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle-nav" id="themeToggleNav" aria-label="Toggle theme" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="id" aria-label="Bahasa Indonesia">
+                        <span class="flag-icon">🇮🇩</span>
+                        <span class="lang-text">ID</span>
+                    </button>
+                    <button class="lang-btn" data-lang="en" aria-label="English">
+                        <span class="flag-icon">🇬🇧</span>
+                        <span class="lang-text">EN</span>
+                    </button>
+                </div>
+            </div>
+            
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -30,8 +51,8 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1 class="fade-in">Tentang Saya</h1>
-            <p class="fade-in-delay">Mengenal lebih dekat Muhammad Galih Seto</p>
+            <h1 class="fade-in" data-i18n="about.header.title">Tentang Saya</h1>
+            <p class="fade-in-delay" data-i18n="about.header.subtitle">Mengenal lebih dekat Muhammad Galih Seto</p>
         </div>
     </section>
 
@@ -44,11 +65,11 @@
                     <div class="card-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h2>Riwayat Keluarga</h2>
-                    <p>Anak ke 2 dari 3 bersaudara</p>
+                    <h2 data-i18n="about.family.title">Riwayat Keluarga</h2>
+                    <p data-i18n="about.family.child">Anak ke 2 dari 3 bersaudara</p>
                     <ul class="info-list">
-                        <li><strong>Ayah:</strong> Swasta (sekarang Driver Ojol)</li>
-                        <li><strong>Ibu:</strong> Perawat di RS St. Elisabeth Semarang</li>
+                        <li><strong data-i18n="about.family.father">Ayah:</strong> <span data-i18n="about.family.father_job">Swasta (sekarang Driver Ojol)</span></li>
+                        <li><strong data-i18n="about.family.mother">Ibu:</strong> <span data-i18n="about.family.mother_job">Perawat di RS St. Elisabeth Semarang</span></li>
                     </ul>
                 </div>
 
@@ -57,31 +78,31 @@
                     <div class="card-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h2>Riwayat Pendidikan</h2>
+                    <h2 data-i18n="about.education.title">Riwayat Pendidikan</h2>
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
-                                <h4>PAUD Hidayattullah Tuksongo</h4>
+                                <h4 data-i18n="about.education.paud">PAUD Hidayattullah Tuksongo</h4>
                             </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
-                                <h4>SD N 3 Tuksongo</h4>
+                                <h4 data-i18n="about.education.sd">SD N 3 Tuksongo</h4>
                             </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
-                                <h4>SMP N 21 Semarang</h4>
+                                <h4 data-i18n="about.education.smp">SMP N 21 Semarang</h4>
                             </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
-                                <h4>SMK N 7 Semarang</h4>
-                                <p>Jurusan SIJA (Sekarang)</p>
+                                <h4 data-i18n="about.education.smk">SMK N 7 Semarang</h4>
+                                <p data-i18n="about.education.smk_major">Jurusan SIJA (Sekarang)</p>
                             </div>
                         </div>
                     </div>
@@ -92,27 +113,27 @@
                     <div class="card-icon">
                         <i class="fas fa-heart"></i>
                     </div>
-                    <h2>Hobi</h2>
+                    <h2 data-i18n="about.hobby.title">Hobi</h2>
                     <div class="hobby-grid">
                         <div class="hobby-item">
                             <i class="fas fa-futbol"></i>
-                            <span>Bermain Bola</span>
+                            <span data-i18n="about.hobby.football">Bermain Bola</span>
                         </div>
                         <div class="hobby-item">
                             <i class="fas fa-dumbbell"></i>
-                            <span>Workout</span>
+                            <span data-i18n="about.hobby.workout">Workout</span>
                         </div>
                         <div class="hobby-item">
                             <i class="fas fa-music"></i>
-                            <span>Mendengar Musik</span>
+                            <span data-i18n="about.hobby.music">Mendengar Musik</span>
                         </div>
                         <div class="hobby-item">
                             <i class="fas fa-bicycle"></i>
-                            <span>Bersepeda</span>
+                            <span data-i18n="about.hobby.cycling">Bersepeda</span>
                         </div>
                         <div class="hobby-item">
                             <i class="fas fa-gamepad"></i>
-                            <span>Bermain Game</span>
+                            <span data-i18n="about.hobby.gaming">Bermain Game</span>
                         </div>
                     </div>
                 </div>
@@ -122,11 +143,11 @@
                     <div class="card-icon">
                         <i class="fas fa-star"></i>
                     </div>
-                    <h2>Minat</h2>
+                    <h2 data-i18n="about.interest.title">Minat</h2>
                     <ul class="interest-list">
-                        <li><i class="fas fa-check"></i> Menguasai keamanan cyber networking</li>
-                        <li><i class="fas fa-check"></i> Mengatur/konfigurasi networking</li>
-                        <li><i class="fas fa-check"></i> Paham beberapa bahasa coding (Python)</li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.interest.cyber">Menguasai keamanan cyber networking</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.interest.network">Mengatur/konfigurasi networking</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.interest.coding">Paham beberapa bahasa coding (Python)</span></li>
                     </ul>
                 </div>
 
@@ -135,10 +156,10 @@
                     <div class="card-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h2>Cita-cita</h2>
+                    <h2 data-i18n="about.dream.title">Cita-cita</h2>
                     <ul class="dream-list">
-                        <li><i class="fas fa-plane"></i> Bekerja dan Tinggal di luar negeri</li>
-                        <li><i class="fas fa-globe-americas"></i> Traveling ke berbagai belahan dunia</li>
+                        <li><i class="fas fa-plane"></i> <span data-i18n="about.dream.work">Bekerja dan Tinggal di luar negeri</span></li>
+                        <li><i class="fas fa-globe-americas"></i> <span data-i18n="about.dream.travel">Traveling ke berbagai belahan dunia</span></li>
                     </ul>
                 </div>
 
@@ -147,24 +168,24 @@
                     <div class="card-icon">
                         <i class="fas fa-trophy"></i>
                     </div>
-                    <h2>Kelebihan Diri</h2>
+                    <h2 data-i18n="about.strength.title">Kelebihan Diri</h2>
                     <div class="skills-section">
                         <div class="skill-category">
-                            <h3><i class="fas fa-comments"></i> Soft Skills</h3>
+                            <h3><i class="fas fa-comments"></i> <span data-i18n="about.strength.soft_title">Soft Skills</span></h3>
                             <ul>
-                                <li>Mampu beradaptasi dengan cepat</li>
-                                <li>Disiplin</li>
-                                <li>Konsistensi yang tinggi</li>
-                                <li>Tidak mudah tertekan</li>
-                                <li>Santai saat menghadapi masalah</li>
+                                <li data-i18n="about.strength.soft1">Mampu beradaptasi dengan cepat</li>
+                                <li data-i18n="about.strength.soft2">Disiplin</li>
+                                <li data-i18n="about.strength.soft3">Konsistensi yang tinggi</li>
+                                <li data-i18n="about.strength.soft4">Tidak mudah tertekan</li>
+                                <li data-i18n="about.strength.soft5">Santai saat menghadapi masalah</li>
                             </ul>
                         </div>
                         <div class="skill-category">
-                            <h3><i class="fas fa-tools"></i> Hard Skills</h3>
+                            <h3><i class="fas fa-tools"></i> <span data-i18n="about.strength.hard_title">Hard Skills</span></h3>
                             <ul>
-                                <li>Dasar-dasar networking</li>
-                                <li>Problem solving teknis</li>
-                                <li>Sedikit paham sistem komputer</li>
+                                <li data-i18n="about.strength.hard1">Dasar-dasar networking</li>
+                                <li data-i18n="about.strength.hard2">Problem solving teknis</li>
+                                <li data-i18n="about.strength.hard3">Sedikit paham sistem komputer</li>
                             </ul>
                         </div>
                     </div>
@@ -175,8 +196,8 @@
         <!-- Beyond Tech Section -->
         <div class="beyond-tech-section">
             <div class="section-header">
-                <h2>Beyond Tech</h2>
-                <p>Kehidupan dan kegiatan di luar teknologi yang membentuk karakter saya</p>
+                <h2 data-i18n="about.beyond.title">Beyond Tech</h2>
+                <p data-i18n="about.beyond.subtitle">Kehidupan dan kegiatan di luar teknologi yang membentuk karakter saya</p>
             </div>
 
             <div class="beyond-tech-grid">
@@ -189,9 +210,9 @@
                         </div>
                     </div>
                     <div class="beyond-tech-content">
-                        <h3><i class="fas fa-dumbbell"></i> Gym & Workout</h3>
-                        <p class="beyond-tech-context">Disiplin & Konsistensi</p>
-                        <p class="beyond-tech-desc">
+                        <h3><i class="fas fa-dumbbell"></i> <span data-i18n="about.beyond.gym_title">Gym & Workout</span></h3>
+                        <p class="beyond-tech-context" data-i18n="about.beyond.gym_context">Disiplin & Konsistensi</p>
+                        <p class="beyond-tech-desc" data-i18n="about.beyond.gym_desc">
                             Melalui latihan rutin di gym, saya belajar pentingnya disiplin dan konsistensi. 
                             Setiap sesi workout mengajarkan saya untuk tetap fokus pada tujuan dan tidak mudah menyerah.
                         </p>
@@ -207,9 +228,9 @@
                         </div>
                     </div>
                     <div class="beyond-tech-content">
-                        <h3><i class="fas fa-bicycle"></i> Bersepeda</h3>
-                        <p class="beyond-tech-context">Endurance & Lifestyle Sehat</p>
-                        <p class="beyond-tech-desc">
+                        <h3><i class="fas fa-bicycle"></i> <span data-i18n="about.beyond.cycling_title">Bersepeda</span></h3>
+                        <p class="beyond-tech-context" data-i18n="about.beyond.cycling_context">Endurance & Lifestyle Sehat</p>
+                        <p class="beyond-tech-desc" data-i18n="about.beyond.cycling_desc">
                             Bersepeda mengajarkan saya tentang ketahanan dan pentingnya menjaga gaya hidup sehat. 
                             Setiap perjalanan adalah tantangan untuk meningkatkan stamina dan menikmati prosesnya.
                         </p>
@@ -225,9 +246,9 @@
                         </div>
                     </div>
                     <div class="beyond-tech-content">
-                        <h3><i class="fas fa-plane"></i> Liburan & Traveling</h3>
-                        <p class="beyond-tech-context">Eksplorasi & Adaptasi</p>
-                        <p class="beyond-tech-desc">
+                        <h3><i class="fas fa-plane"></i> <span data-i18n="about.beyond.travel_title">Liburan & Traveling</span></h3>
+                        <p class="beyond-tech-context" data-i18n="about.beyond.travel_context">Eksplorasi & Adaptasi</p>
+                        <p class="beyond-tech-desc" data-i18n="about.beyond.travel_desc">
                             Traveling membuka wawasan saya tentang berbagai budaya dan cara hidup. 
                             Kemampuan beradaptasi dengan lingkungan baru adalah skill yang sangat berharga.
                         </p>
@@ -237,7 +258,7 @@
 
             <div class="beyond-tech-note">
                 <i class="fas fa-lightbulb"></i>
-                <p>Aktivitas di luar teknologi ini membantu saya menjadi pribadi yang lebih seimbang, disiplin, dan adaptif - 
+                <p data-i18n="about.beyond.note">Aktivitas di luar teknologi ini membantu saya menjadi pribadi yang lebih seimbang, disiplin, dan adaptif - 
                    kualitas yang juga saya terapkan dalam dunia teknologi dan networking.</p>
             </div>
         </div>
@@ -251,7 +272,7 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3>Quick Links</h3>
+            <h3 data-i18n="sidebar.title">Quick Links</h3>
             <button class="sidebar-close" onclick="toggleSidebar()">
                 <i class="fas fa-times"></i>
             </button>
@@ -260,16 +281,16 @@
         <div class="sidebar-content">
             <!-- My Phone -->
             <div class="sidebar-section">
-                <h4><i class="fas fa-mobile-alt"></i> My Phone</h4>
+                <h4><i class="fas fa-mobile-alt"></i> <span data-i18n="sidebar.phone_title">My Phone</span></h4>
                 <button class="sidebar-link" onclick="openPhone()" style="width: 100%; text-align: left; background: none; border: none; cursor: pointer;">
                     <i class="fas fa-mobile-alt"></i>
-                    Open My Phone
+                    <span data-i18n="sidebar.phone_open">Open My Phone</span>
                 </button>
             </div>
 
             <!-- Contact -->
             <div class="sidebar-section">
-                <h4><i class="fas fa-envelope"></i> Contact</h4>
+                <h4><i class="fas fa-envelope"></i> <span data-i18n="sidebar.contact_title">Contact</span></h4>
                 <a href="mailto:tigergalss179@gmail.com" class="sidebar-link">
                     <i class="fas fa-paper-plane"></i>
                     tigergalss179@gmail.com
@@ -302,11 +323,12 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Made with ❤️ by Muhammad Galih Seto © 2026</p>
-            <p class="footer-subtitle">Thanks for visiting! Feel free to reach out 🚀</p>
+            <p data-i18n="footer.copyright">Made with ❤️ by Muhammad Galih Seto © 2026</p>
+            <p class="footer-subtitle" data-i18n="footer.subtitle">Thanks for visiting! Feel free to reach out 🚀</p>
         </div>
     </footer>
 
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -11,14 +11,35 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Galih</div>
+            <div class="logo" data-i18n="nav.logo">Galih</div>
             <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="cv.html" class="active">CV</a></li>
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav.about">About Me</a></li>
+                <li><a href="skills.html" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+                <li><a href="cv.html" class="active" data-i18n="nav.cv">CV</a></li>
             </ul>
+            
+            <!-- Theme & Language Controls -->
+            <div class="nav-controls">
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle-nav" id="themeToggleNav" aria-label="Toggle theme" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="id" aria-label="Bahasa Indonesia">
+                        <span class="flag-icon">🇮🇩</span>
+                        <span class="lang-text">ID</span>
+                    </button>
+                    <button class="lang-btn" data-lang="en" aria-label="English">
+                        <span class="flag-icon">🇬🇧</span>
+                        <span class="lang-text">EN</span>
+                    </button>
+                </div>
+            </div>
+            
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -30,8 +51,8 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1 class="fade-in">Curriculum Vitae</h1>
-            <p class="fade-in-delay">Profil profesional dan pengalaman saya</p>
+            <h1 class="fade-in" data-i18n="cv.header.title">Curriculum Vitae</h1>
+            <p class="fade-in-delay" data-i18n="cv.header.subtitle">Profil profesional dan pengalaman saya</p>
         </div>
     </section>
 
@@ -48,7 +69,7 @@
 
                     <!-- Contact -->
                     <div class="cv-section fade-in-delay">
-                        <h2><i class="fas fa-envelope"></i> Kontak</h2>
+                        <h2><i class="fas fa-envelope"></i> <span data-i18n="cv.contact.title">Kontak</span></h2>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <span>Semarang, Indonesia</span>
@@ -65,28 +86,28 @@
 
                     <!-- Skills - Networking -->
                     <div class="cv-section fade-in-delay">
-                        <h2><i class="fas fa-network-wired"></i> Networking</h2>
+                        <h2><i class="fas fa-network-wired"></i> <span data-i18n="cv.skills.networking_title">Networking</span></h2>
                         <ul class="cv-skill-list">
-                            <li>Cisco Packet Tracer</li>
-                            <li>Routing Dasar</li>
-                            <li>Troubleshooting Jaringan</li>
-                            <li>Konfigurasi Dasar Jaringan</li>
+                            <li data-i18n="cv.skills.networking1">Cisco Packet Tracer</li>
+                            <li data-i18n="cv.skills.networking2">Routing Dasar</li>
+                            <li data-i18n="cv.skills.networking3">Troubleshooting Jaringan</li>
+                            <li data-i18n="cv.skills.networking4">Konfigurasi Dasar Jaringan</li>
                         </ul>
                     </div>
 
                     <!-- Skills - Web Dasar -->
                     <div class="cv-section fade-in-delay">
-                        <h2><i class="fas fa-code"></i> Web Dasar</h2>
+                        <h2><i class="fas fa-code"></i> <span data-i18n="cv.skills.web_title">Web Dasar</span></h2>
                         <ul class="cv-skill-list">
                             <li>HTML</li>
                             <li>CSS</li>
-                            <li>JavaScript Dasar</li>
+                            <li data-i18n="cv.skills.web3">JavaScript Dasar</li>
                         </ul>
                     </div>
 
                     <!-- Tools -->
                     <div class="cv-section fade-in-delay-2">
-                        <h2><i class="fas fa-tools"></i> Tools</h2>
+                        <h2><i class="fas fa-tools"></i> <span data-i18n="cv.tools.title">Tools</span></h2>
                         <ul class="cv-skill-list">
                             <li>Canva</li>
                             <li>CapCut</li>
@@ -96,12 +117,12 @@
 
                     <!-- Minat & Aktivitas -->
                     <div class="cv-section fade-in-delay-2">
-                        <h2><i class="fas fa-heart"></i> Minat & Aktivitas</h2>
+                        <h2><i class="fas fa-heart"></i> <span data-i18n="cv.interest.title">Minat & Aktivitas</span></h2>
                         <ul class="cv-skill-list">
                             <li>Workout</li>
-                            <li>Bersepeda</li>
-                            <li>Teknologi</li>
-                            <li>Musik</li>
+                            <li data-i18n="cv.interest.cycling">Bersepeda</li>
+                            <li data-i18n="cv.interest.tech">Teknologi</li>
+                            <li data-i18n="cv.interest.music">Musik</li>
                         </ul>
                     </div>
                 </div>
@@ -110,14 +131,14 @@
                 <div class="cv-main">
                     <!-- Tagline -->
                     <div class="cv-tagline fade-in">
-                        <h1>Muhammad Galih Seto</h1>
-                        <p class="tagline">Pelajar SIJA | Fokus pada Networking & Infrastruktur IT</p>
+                        <h1 data-i18n="cv.personal.name">Muhammad Galih Seto</h1>
+                        <p class="tagline" data-i18n="cv.personal.tagline">Pelajar SIJA | Fokus pada Networking & Infrastruktur IT</p>
                     </div>
 
                     <!-- About -->
                     <div class="cv-section fade-in-delay">
-                        <h2><i class="fas fa-user-circle"></i> Tentang Saya</h2>
-                        <p>
+                        <h2><i class="fas fa-user-circle"></i> <span data-i18n="cv.about.title">Tentang Saya</span></h2>
+                        <p data-i18n="cv.about.description">
                             Pelajar SMK jurusan SIJA dengan fokus pada bidang jaringan komputer dan infrastruktur IT. 
                             Memiliki ketertarikan dalam konfigurasi jaringan, simulasi routing menggunakan Cisco Packet Tracer, 
                             serta pengembangan kemampuan teknis melalui praktik langsung dan pembelajaran mandiri. Saat ini juga 
@@ -128,22 +149,22 @@
 
                     <!-- Keahlian Utama -->
                     <div class="cv-section fade-in-delay">
-                        <h2><i class="fas fa-star"></i> Keahlian Utama</h2>
+                        <h2><i class="fas fa-star"></i> <span data-i18n="cv.expertise.title">Keahlian Utama</span></h2>
                         <div class="cv-skills-grid">
                             <!-- Networking & Infrastruktur -->
                             <div class="skill-badge-tooltip">
                                 <div class="skill-badge">
                                     <i class="fas fa-network-wired"></i>
-                                    <span>Networking & Infrastruktur</span>
+                                    <span data-i18n="cv.expertise.network_title">Networking & Infrastruktur</span>
                                 </div>
                                 <div class="skill-tooltip">
-                                    <h4>Networking & Infrastruktur</h4>
+                                    <h4 data-i18n="cv.expertise.network_title">Networking & Infrastruktur</h4>
                                     <ul>
-                                        <li>Routing dasar (OSPF)</li>
-                                        <li>Konfigurasi jaringan dasar</li>
-                                        <li>IP Addressing</li>
-                                        <li>Troubleshooting jaringan dasar</li>
-                                        <li>Simulasi topologi menggunakan Cisco Packet Tracer</li>
+                                        <li data-i18n="cv.expertise.network1">Routing dasar (OSPF)</li>
+                                        <li data-i18n="cv.expertise.network2">Konfigurasi jaringan dasar</li>
+                                        <li data-i18n="cv.expertise.network3">IP Addressing</li>
+                                        <li data-i18n="cv.expertise.network4">Troubleshooting jaringan dasar</li>
+                                        <li data-i18n="cv.expertise.network5">Simulasi topologi menggunakan Cisco Packet Tracer</li>
                                     </ul>
                                 </div>
                             </div>
@@ -152,15 +173,15 @@
                             <div class="skill-badge-tooltip">
                                 <div class="skill-badge">
                                     <i class="fas fa-shield-alt"></i>
-                                    <span>Cyber Security Dasar</span>
+                                    <span data-i18n="cv.expertise.security_title">Cyber Security Dasar</span>
                                 </div>
                                 <div class="skill-tooltip">
-                                    <h4>Cyber Security Dasar</h4>
+                                    <h4 data-i18n="cv.expertise.security_title">Cyber Security Dasar</h4>
                                     <ul>
-                                        <li>Dasar keamanan jaringan</li>
-                                        <li>SQL Injection dasar</li>
-                                        <li>Pengenalan vulnerability testing</li>
-                                        <li>Pembelajaran mandiri melalui TryHackMe</li>
+                                        <li data-i18n="cv.expertise.security1">Dasar keamanan jaringan</li>
+                                        <li data-i18n="cv.expertise.security2">SQL Injection dasar</li>
+                                        <li data-i18n="cv.expertise.security3">Pengenalan vulnerability testing</li>
+                                        <li data-i18n="cv.expertise.security4">Pembelajaran mandiri melalui TryHackMe</li>
                                     </ul>
                                 </div>
                             </div>
@@ -169,15 +190,15 @@
                             <div class="skill-badge-tooltip">
                                 <div class="skill-badge">
                                     <i class="fas fa-code"></i>
-                                    <span>Web Development Dasar</span>
+                                    <span data-i18n="cv.expertise.web_title">Web Development Dasar</span>
                                 </div>
                                 <div class="skill-tooltip">
-                                    <h4>Web Development Dasar</h4>
+                                    <h4 data-i18n="cv.expertise.web_title">Web Development Dasar</h4>
                                     <ul>
                                         <li>HTML</li>
                                         <li>CSS</li>
-                                        <li>JavaScript dasar</li>
-                                        <li>Pembuatan website personal sederhana</li>
+                                        <li data-i18n="cv.expertise.web3">JavaScript dasar</li>
+                                        <li data-i18n="cv.expertise.web4">Pembuatan website personal sederhana</li>
                                     </ul>
                                 </div>
                             </div>
@@ -186,14 +207,14 @@
                             <div class="skill-badge-tooltip">
                                 <div class="skill-badge">
                                     <i class="fas fa-palette"></i>
-                                    <span>Editing & Desain</span>
+                                    <span data-i18n="cv.expertise.editing_title">Editing & Desain</span>
                                 </div>
                                 <div class="skill-tooltip">
-                                    <h4>Editing & Desain</h4>
+                                    <h4 data-i18n="cv.expertise.editing_title">Editing & Desain</h4>
                                     <ul>
-                                        <li>Editing video menggunakan CapCut</li>
-                                        <li>Desain visual menggunakan Canva</li>
-                                        <li>Pembuatan presentasi dan konten sederhana</li>
+                                        <li data-i18n="cv.expertise.editing1">Editing video menggunakan CapCut</li>
+                                        <li data-i18n="cv.expertise.editing2">Desain visual menggunakan Canva</li>
+                                        <li data-i18n="cv.expertise.editing3">Pembuatan presentasi dan konten sederhana</li>
                                     </ul>
                                 </div>
                             </div>
@@ -202,26 +223,26 @@
 
                     <!-- Education -->
                     <div class="cv-section fade-in-delay">
-                        <h2><i class="fas fa-graduation-cap"></i> Pendidikan</h2>
+                        <h2><i class="fas fa-graduation-cap"></i> <span data-i18n="cv.education.title">Pendidikan</span></h2>
                         <div class="cv-timeline">
                             <div class="timeline-item">
                                 <div class="timeline-marker"></div>
                                 <div class="timeline-content">
-                                    <h3>SMK Negeri 7 Semarang</h3>
-                                    <p class="timeline-period">2024 - Sekarang</p>
-                                    <p class="timeline-desc">SIJA (Sistem Informatika, Jaringan & Aplikasi)</p>
+                                    <h3 data-i18n="cv.education.smk">SMK Negeri 7 Semarang</h3>
+                                    <p class="timeline-period" data-i18n="cv.education.smk_period">2024 - Sekarang</p>
+                                    <p class="timeline-desc" data-i18n="cv.education.smk_major">SIJA (Sistem Informatika, Jaringan & Aplikasi)</p>
                                     <ul class="timeline-list">
-                                        <li>Fokus pada pembelajaran jaringan komputer dan infrastruktur IT</li>
-                                        <li>Aktif melakukan praktik simulasi jaringan menggunakan Cisco Packet Tracer</li>
-                                        <li>Sedang menempuh pembelajaran mandiri cyber security melalui platform TryHackMe</li>
+                                        <li data-i18n="cv.education.smk_desc1">Fokus pada pembelajaran jaringan komputer dan infrastruktur IT</li>
+                                        <li data-i18n="cv.education.smk_desc2">Aktif melakukan praktik simulasi jaringan menggunakan Cisco Packet Tracer</li>
+                                        <li data-i18n="cv.education.smk_desc3">Sedang menempuh pembelajaran mandiri cyber security melalui platform TryHackMe</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-marker"></div>
                                 <div class="timeline-content">
-                                    <h3>SMP Negeri 21 Semarang</h3>
-                                    <p class="timeline-period">2021 - 2024</p>
+                                    <h3 data-i18n="cv.education.smp">SMP Negeri 21 Semarang</h3>
+                                    <p class="timeline-period" data-i18n="cv.education.smp_period">2021 - 2024</p>
                                 </div>
                             </div>
                         </div>
@@ -229,30 +250,30 @@
 
                     <!-- Projects -->
                     <div class="cv-section fade-in-delay-2">
-                        <h2><i class="fas fa-project-diagram"></i> Proyek & Pengalaman</h2>
+                        <h2><i class="fas fa-project-diagram"></i> <span data-i18n="cv.projects.title">Proyek & Pengalaman</span></h2>
                         
                         <div class="project-item">
-                            <h3><i class="fas fa-network-wired"></i> Simulasi Dynamic Routing OSPF</h3>
+                            <h3><i class="fas fa-network-wired"></i> <span data-i18n="cv.projects.network_title">Simulasi Dynamic Routing OSPF</span></h3>
                             <ul class="project-list">
-                                <li>Membuat topologi jaringan menggunakan Cisco Packet Tracer</li>
-                                <li>Mengkonfigurasi routing OSPF antar router</li>
-                                <li>Melakukan pengujian konektivitas jaringan</li>
+                                <li data-i18n="cv.projects.network_desc1">Membuat topologi jaringan menggunakan Cisco Packet Tracer</li>
+                                <li data-i18n="cv.projects.network_desc2">Mengkonfigurasi routing OSPF antar router</li>
+                                <li data-i18n="cv.projects.network_desc3">Melakukan pengujian konektivitas jaringan</li>
                             </ul>
                         </div>
 
                         <div class="project-item">
-                            <h3><i class="fas fa-laptop-code"></i> Website Personal Branding</h3>
+                            <h3><i class="fas fa-laptop-code"></i> <span data-i18n="cv.projects.website_title">Website Personal Branding</span></h3>
                             <ul class="project-list">
-                                <li>Mendesain dan mengembangkan website personal bertema networking dan teknologi</li>
-                                <li>Mengembangkan tampilan interaktif dengan konsep modern dan futuristik</li>
+                                <li data-i18n="cv.projects.website_desc1">Mendesain dan mengembangkan website personal bertema networking dan teknologi</li>
+                                <li data-i18n="cv.projects.website_desc2">Mengembangkan tampilan interaktif dengan konsep modern dan futuristik</li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Career Goals -->
                     <div class="cv-section fade-in-delay-2">
-                        <h2><i class="fas fa-bullseye"></i> Tujuan Karier</h2>
-                        <p>
+                        <h2><i class="fas fa-bullseye"></i> <span data-i18n="cv.goals.title">Tujuan Karier</span></h2>
+                        <p data-i18n="cv.goals.description">
                             Berfokus mengembangkan kemampuan di bidang network engineering dan infrastruktur IT sebagai 
                             persiapan untuk berkarier di lingkungan kerja internasional.
                         </p>
@@ -261,7 +282,7 @@
                     <!-- Download Button -->
                     <div class="cv-download fade-in-delay-2">
                         <button class="btn btn-primary" onclick="window.print()">
-                            <i class="fas fa-download"></i> Download CV (PDF)
+                            <i class="fas fa-download"></i> <span data-i18n="cv.download">Download CV (PDF)</span>
                         </button>
                     </div>
                 </div>
@@ -277,7 +298,7 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3>Quick Links</h3>
+            <h3 data-i18n="sidebar.title">Quick Links</h3>
             <button class="sidebar-close" onclick="toggleSidebar()">
                 <i class="fas fa-times"></i>
             </button>
@@ -286,7 +307,7 @@
         <div class="sidebar-content">
             <!-- Contact -->
             <div class="sidebar-section">
-                <h4><i class="fas fa-envelope"></i> Contact</h4>
+                <h4><i class="fas fa-envelope"></i> <span data-i18n="sidebar.contact_title">Contact</span></h4>
                 <a href="mailto:tigergalss179@gmail.com" class="sidebar-link">
                     <i class="fas fa-paper-plane"></i>
                     tigergalss179@gmail.com
@@ -319,11 +340,12 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Made with ❤️ by Muhammad Galih Seto © 2026</p>
-            <p class="footer-subtitle">Thanks for visiting! Feel free to reach out 🚀</p>
+            <p data-i18n="footer.copyright">Made with ❤️ by Muhammad Galih Seto © 2026</p>
+            <p class="footer-subtitle" data-i18n="footer.subtitle">Thanks for visiting! Feel free to reach out 🚀</p>
         </div>
     </footer>
 
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
