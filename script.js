@@ -802,3 +802,190 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== LOG SUCCESSFUL LOAD =====
 console.log('✅ script.js loaded successfully - All functions are in global scope');
+
+
+// ===== SINGLE-PAGE SCROLL ENHANCEMENTS =====
+
+// Smooth scroll to section with offset for fixed navbar
+window.scrollToSection = function(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        const navbarHeight = document.querySelector('.navbar').offsetHeight || 80;
+        const targetPosition = section.offsetTop - navbarHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+        
+        // Close mobile menu if open
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger && navMenu) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    }
+};
+
+// Enhanced scroll spy for navigation and indicators
+function updateActiveSection() {
+    const sections = ['home', 'about', 'skills', 'portfolio', 'gallery', 'cv'];
+    const indicators = document.querySelectorAll('.section-indicator');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+    
+    let currentSection = 'home'; // default
+    
+    // Find which section is currently in view
+    for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+            const rect = section.getBoundingClientRect();
+            // Section is considered active if its top is within viewport or above
+            if (rect.top <= navbarHeight + 100) {
+                currentSection = sections[i];
+                break;
+            }
+        }
+    }
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        const isActive = sections[index] === currentSection;
+        indicator.classList.toggle('active', isActive);
+    });
+    
+    // Update nav links
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        const isActive = href === '#' + currentSection;
+        link.classList.toggle('active', isActive);
+    });
+}
+
+// Throttled scroll handler for performance
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+    if (scrollTimeout) {
+        window.cancelAnimationFrame(scrollTimeout);
+    }
+    
+    scrollTimeout = window.requestAnimationFrame(function() {
+        updateActiveSection();
+    });
+});
+
+// Update on page load
+window.addEventListener('load', function() {
+    updateActiveSection();
+    
+    // Trigger intersection observer for fade-in elements
+    const fadeElements = document.querySelectorAll('.fade-in, .fade-in-delay, .fade-in-delay-2, .fade-in-delay-3');
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const fadeObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                fadeObserver.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, observerOptions);
+    
+    fadeElements.forEach(el => fadeObserver.observe(el));
+});
+
+// Handle hash in URL on page load
+window.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash) {
+        const sectionId = window.location.hash.substring(1);
+        setTimeout(() => {
+            scrollToSection(sectionId);
+        }, 100);
+    }
+});
+
+// Update URL hash when scrolling (without triggering scroll)
+let hashUpdateTimeout;
+window.addEventListener('scroll', function() {
+    clearTimeout(hashUpdateTimeout);
+    hashUpdateTimeout = setTimeout(function() {
+        const sections = ['home', 'about', 'skills', 'portfolio', 'gallery', 'cv'];
+        const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+        
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = document.getElementById(sections[i]);
+            if (section) {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= navbarHeight + 100) {
+                    // Update URL without scrolling
+                    if (window.location.hash !== '#' + sections[i]) {
+                        history.replaceState(null, null, '#' + sections[i]);
+                    }
+                    break;
+                }
+            }
+        }
+    }, 300);
+});
+
+// Prevent default anchor link behavior and use smooth scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.length > 1) {
+                e.preventDefault();
+                const sectionId = href.substring(1);
+                scrollToSection(sectionId);
+            }
+        });
+    });
+});
+
+// Keyboard navigation for sections
+window.addEventListener('keydown', function(e) {
+    // Alt + Arrow keys to navigate sections
+    if (e.altKey) {
+        const sections = ['home', 'about', 'skills', 'portfolio', 'gallery', 'cv'];
+        const currentHash = window.location.hash.substring(1) || 'home';
+        const currentIndex = sections.indexOf(currentHash);
+        
+        if (e.key === 'ArrowDown' && currentIndex < sections.length - 1) {
+            e.preventDefault();
+            scrollToSection(sections[currentIndex + 1]);
+        } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+            e.preventDefault();
+            scrollToSection(sections[currentIndex - 1]);
+        }
+    }
+});
+
+// Add section transition effects
+window.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.full-section');
+    
+    const sectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+});
+
+console.log('✅ Single-page scroll enhancements loaded');

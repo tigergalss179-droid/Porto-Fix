@@ -13,18 +13,223 @@
     <!-- Async load Font Awesome for non-blocking render -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    
+    <style>
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Full-height sections */
+        .full-section {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 0;
+        }
+        
+        /* Better section spacing for visual flow */
+        #home {
+            padding: 80px 0;
+        }
+        
+        #about, #skills, #portfolio {
+            padding: 120px 0;
+        }
+        
+        #gallery {
+            padding: 140px 0;
+        }
+        
+        #cv {
+            padding: 120px 0 80px;
+        }
+        
+        /* Section separators */
+        .section-separator {
+            height: 150px;
+            background: linear-gradient(to bottom, transparent 0%, rgba(102, 126, 234, 0.1) 50%, transparent 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .section-separator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gradient-start), var(--gradient-end), transparent);
+        }
+        
+        .section-separator .separator-icon {
+            background: var(--bg-color, #fff);
+            padding: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            font-size: 24px;
+            color: var(--gradient-start);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        
+        /* Section indicators */
+        .section-indicators {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .section-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .section-indicator:hover,
+        .section-indicator.active {
+            background: var(--gradient-start);
+            transform: scale(1.3);
+        }
+        
+        .section-indicator::after {
+            content: attr(data-section);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .section-indicator:hover::after {
+            opacity: 1;
+        }
+        
+        /* Section number badges */
+        .section-number {
+            position: absolute;
+            top: 100px;
+            left: 50px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+            z-index: 10;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .section-number::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            opacity: 0.3;
+            animation: sectionPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes sectionPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        .full-section:hover .section-number {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+        }
+        
+        /* Dark mode adjustments */
+        body.dark-mode .section-separator {
+            background: linear-gradient(to bottom, transparent 0%, rgba(102, 126, 234, 0.15) 50%, transparent 100%);
+        }
+        
+        body.dark-mode .separator-icon {
+            background: var(--bg-dark, #1a1a2e);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-indicators {
+                right: 15px;
+                gap: 10px;
+            }
+            
+            .section-indicator {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .section-number {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                left: 20px;
+                top: 80px;
+            }
+            
+            .section-separator {
+                height: 100px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Section Indicators -->
+    <div class="section-indicators">
+        <div class="section-indicator active" data-section="Home" onclick="scrollToSection('home')"></div>
+        <div class="section-indicator" data-section="About" onclick="scrollToSection('about')"></div>
+        <div class="section-indicator" data-section="Skills" onclick="scrollToSection('skills')"></div>
+        <div class="section-indicator" data-section="Portfolio" onclick="scrollToSection('portfolio')"></div>
+        <div class="section-indicator" data-section="Gallery" onclick="scrollToSection('gallery')"></div>
+        <div class="section-indicator" data-section="CV" onclick="scrollToSection('cv')"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo" data-i18n="nav.logo">Galih</div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="active" data-i18n="nav.home">Home</a></li>
-                <li><a href="about.html" data-i18n="nav.about">About Me</a></li>
-                <li><a href="skills.html" data-i18n="nav.skills">Skills</a></li>
-                <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
-                <li><a href="cv.html" data-i18n="nav.cv">CV</a></li>
+                <li><a href="#home" class="active" data-i18n="nav.home">Home</a></li>
+                <li><a href="#about" data-i18n="nav.about">About Me</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+                <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
+                <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+                <li><a href="#cv" data-i18n="nav.cv">CV</a></li>
             </ul>
             
             <!-- Theme & Language Controls -->
@@ -55,8 +260,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- SECTION 1: HOME / HERO -->
+    <section id="home" class="hero full-section">
+        <div class="section-number">01</div>
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="fade-in" data-i18n="home.hero.name">Muhammad Galih Seto</h1>
@@ -65,8 +271,8 @@
                     Berfokus mengembangkan kemampuan di bidang network engineering sebagai persiapan menghadapi dunia kerja di industri IT.
                 </p>
                 <div class="hero-buttons fade-in-delay-3">
-                    <a href="portfolio.html" class="btn btn-primary" data-i18n="home.hero.btn_portfolio">Lihat Portfolio</a>
-                    <a href="cv.html" class="btn btn-secondary" data-i18n="home.hero.btn_cv">Download CV</a>
+                    <a href="#portfolio" class="btn btn-primary" data-i18n="home.hero.btn_portfolio">Lihat Portfolio</a>
+                    <a href="#cv" class="btn btn-secondary" data-i18n="home.hero.btn_cv">Lihat CV</a>
                 </div>
             </div>
             <div class="hero-image fade-in-delay-2">
@@ -75,11 +281,9 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Quick Info Section -->
-    <section class="quick-info">
-        <div class="container">
+        
+        <!-- Quick Info Cards -->
+        <div class="container" style="margin-top: 60px;">
             <div class="info-grid">
                 <div class="info-card clickable-card" onclick="openInfoModal('education')">
                     <div class="icon-wrapper">
@@ -118,11 +322,636 @@
         </div>
     </section>
 
+    <!-- SEPARATOR -->
+    <div class="section-separator">
+        <div class="separator-icon">
+            <i class="fas fa-user"></i>
+        </div>
+    </div>
+
+    <!-- SECTION 2: ABOUT ME -->
+    <section id="about" class="about-content full-section">
+        <div class="section-number">02</div>
+        <div class="container">
+            <div class="page-header" style="text-align: center; margin-bottom: 60px;">
+                <h1 class="fade-in" data-i18n="about.header.title">Tentang Saya</h1>
+                <p class="fade-in-delay" data-i18n="about.header.subtitle">Mengenal lebih dekat Muhammad Galih Seto</p>
+            </div>
+            
+            <div class="about-grid">
+                <!-- Riwayat Keluarga -->
+                <div class="about-card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2 data-i18n="about.family.title">Riwayat Keluarga</h2>
+                    <p data-i18n="about.family.child">Anak ke 2 dari 3 bersaudara</p>
+                    <ul class="info-list">
+                        <li><strong data-i18n="about.family.father">Ayah:</strong> <span data-i18n="about.family.father_job">Swasta (sekarang Driver Ojol)</span></li>
+                        <li><strong data-i18n="about.family.mother">Ibu:</strong> <span data-i18n="about.family.mother_job">Perawat di RS St. Elisabeth Semarang</span></li>
+                    </ul>
+                </div>
+
+                <!-- Riwayat Pendidikan -->
+                <div class="about-card fade-in-delay">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h2 data-i18n="about.education.title">Riwayat Pendidikan</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4 data-i18n="about.education.paud">PAUD Hidayattullah Tuksongo</h4>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4 data-i18n="about.education.sd">SD N 3 Tuksongo</h4>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4 data-i18n="about.education.smp">SMP N 21 Semarang</h4>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4 data-i18n="about.education.smk">SMK N 7 Semarang</h4>
+                                <p data-i18n="about.education.smk_major">Jurusan SIJA (Sekarang)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hobi -->
+                <div class="about-card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h2 data-i18n="about.hobby.title">Hobi</h2>
+                    <div class="hobby-grid">
+                        <div class="hobby-item">
+                            <i class="fas fa-futbol"></i>
+                            <span data-i18n="about.hobby.football">Bermain Bola</span>
+                        </div>
+                        <div class="hobby-item">
+                            <i class="fas fa-dumbbell"></i>
+                            <span data-i18n="about.hobby.workout">Workout</span>
+                        </div>
+                        <div class="hobby-item">
+                            <i class="fas fa-music"></i>
+                            <span data-i18n="about.hobby.music">Mendengar Musik</span>
+                        </div>
+                        <div class="hobby-item">
+                            <i class="fas fa-bicycle"></i>
+                            <span data-i18n="about.hobby.cycling">Bersepeda</span>
+                        </div>
+                        <div class="hobby-item">
+                            <i class="fas fa-gamepad"></i>
+                            <span data-i18n="about.hobby.gaming">Bermain Game</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Minat -->
+                <div class="about-card fade-in-delay">
+                    <div class="card-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h2 data-i18n="about.interest.title">Minat</h2>
+                    <ul class="interest-list">
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.interest.cyber">Menguasai keamanan cyber networking</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.interest.network">Mengatur/konfigurasi networking</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="about.interest.coding">Paham beberapa bahasa coding (Python)</span></li>
+                    </ul>
+                </div>
+
+                <!-- Cita-cita -->
+                <div class="about-card fade-in">
+                    <div class="card-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h2 data-i18n="about.dream.title">Cita-cita</h2>
+                    <ul class="dream-list">
+                        <li><i class="fas fa-plane"></i> <span data-i18n="about.dream.work">Bekerja dan Tinggal di luar negeri</span></li>
+                        <li><i class="fas fa-globe-americas"></i> <span data-i18n="about.dream.travel">Traveling ke berbagai belahan dunia</span></li>
+                    </ul>
+                </div>
+
+                <!-- Kelebihan Diri -->
+                <div class="about-card fade-in-delay full-width">
+                    <div class="card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h2 data-i18n="about.strength.title">Kelebihan Diri</h2>
+                    <div class="skills-section">
+                        <div class="skill-category">
+                            <h3><i class="fas fa-comments"></i> <span data-i18n="about.strength.soft_title">Soft Skills</span></h3>
+                            <ul>
+                                <li data-i18n="about.strength.soft1">Mampu beradaptasi dengan cepat</li>
+                                <li data-i18n="about.strength.soft2">Disiplin</li>
+                                <li data-i18n="about.strength.soft3">Konsistensi yang tinggi</li>
+                                <li data-i18n="about.strength.soft4">Tidak mudah tertekan</li>
+                                <li data-i18n="about.strength.soft5">Santai saat menghadapi masalah</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3><i class="fas fa-tools"></i> <span data-i18n="about.strength.hard_title">Hard Skills</span></h3>
+                            <ul>
+                                <li data-i18n="about.strength.hard1">Dasar-dasar networking</li>
+                                <li data-i18n="about.strength.hard2">Problem solving teknis</li>
+                                <li data-i18n="about.strength.hard3">Sedikit paham sistem komputer</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEPARATOR -->
+    <div class="section-separator">
+        <div class="separator-icon">
+            <i class="fas fa-code"></i>
+        </div>
+    </div>
+
+    <!-- SECTION 3: SKILLS -->
+    <section id="skills" class="skills-content full-section">
+        <div class="section-number">03</div>
+        <div class="container">
+            <div class="page-header" style="text-align: center; margin-bottom: 60px;">
+                <h1 class="fade-in" data-i18n="skills.header.title">Keahlian Saya</h1>
+                <p class="fade-in-delay" data-i18n="skills.header.subtitle">Kemampuan teknis yang saya kuasai</p>
+            </div>
+            
+            <div class="skills-grid">
+                <!-- HTML -->
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <div class="skill-info">
+                            <i class="fab fa-html5"></i>
+                            <h3>HTML</h3>
+                        </div>
+                        <span class="skill-percentage">20%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="20" style="width: 20%"></div>
+                    </div>
+                    <p class="skill-description" data-i18n="skills.technical.html_desc">
+                        Memahami struktur dasar website dan pembuatan layout sederhana menggunakan HTML.
+                    </p>
+                </div>
+
+                <!-- CSS -->
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <div class="skill-info">
+                            <i class="fab fa-css3-alt"></i>
+                            <h3>CSS</h3>
+                        </div>
+                        <span class="skill-percentage">20%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="20" style="width: 20%"></div>
+                    </div>
+                    <p class="skill-description" data-i18n="skills.technical.css_desc">
+                        Membuat tampilan website sederhana dengan styling dasar, layout, dan responsive design.
+                    </p>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <div class="skill-info">
+                            <i class="fab fa-js"></i>
+                            <h3>JavaScript</h3>
+                        </div>
+                        <span class="skill-percentage">10%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="10" style="width: 10%"></div>
+                    </div>
+                    <p class="skill-description" data-i18n="skills.technical.js_desc">
+                        Memahami dasar interaksi website menggunakan JavaScript sederhana.
+                    </p>
+                </div>
+
+                <!-- Cisco Packet Tracer -->
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <div class="skill-info">
+                            <i class="fas fa-network-wired"></i>
+                            <h3 data-i18n="skills.technical.cisco">Cisco Packet Tracer</h3>
+                        </div>
+                        <span class="skill-percentage">70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="70" style="width: 70%"></div>
+                    </div>
+                    <p class="skill-description" data-i18n="skills.technical.cisco_desc">
+                        Membuat simulasi topologi jaringan, konfigurasi routing dasar, dan pengujian konektivitas jaringan.
+                    </p>
+                </div>
+
+                <!-- Editing -->
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <div class="skill-info">
+                            <i class="fas fa-palette"></i>
+                            <h3 data-i18n="skills.technical.editing">Editing (Canva, dll)</h3>
+                        </div>
+                        <span class="skill-percentage">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="75" style="width: 75%"></div>
+                    </div>
+                    <p class="skill-description" data-i18n="skills.technical.editing_desc">
+                        Mendesain visual, poster, dan melakukan editing konten sederhana menggunakan Canva dan tools editing lainnya.
+                    </p>
+                </div>
+
+                <!-- Networking -->
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <div class="skill-info">
+                            <i class="fas fa-server"></i>
+                            <h3 data-i18n="skills.technical.networking">Networking</h3>
+                        </div>
+                        <span class="skill-percentage">50%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-progress="50" style="width: 50%"></div>
+                    </div>
+                    <p class="skill-description" data-i18n="skills.technical.networking_desc">
+                        Memahami dasar jaringan komputer, IP addressing, routing dasar, dan troubleshooting jaringan sederhana.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="skills-info fade-in-delay-2" style="margin-top: 60px;">
+                <div class="info-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3 data-i18n="skills.info.learning_title">Terus Belajar</h3>
+                    <p data-i18n="skills.info.learning_desc">Saya selalu berusaha meningkatkan kemampuan saya melalui praktik dan pembelajaran berkelanjutan</p>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-chart-line"></i>
+                    <h3 data-i18n="skills.info.focus_title">Fokus Pengembangan</h3>
+                    <p data-i18n="skills.info.focus_desc">Saat ini fokus mengembangkan keahlian di bidang Cyber Security dan Networking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEPARATOR -->
+    <div class="section-separator">
+        <div class="separator-icon">
+            <i class="fas fa-briefcase"></i>
+        </div>
+    </div>
+
+    <!-- SECTION 4: PORTFOLIO -->
+    <section id="portfolio" class="portfolio-content full-section">
+        <div class="section-number">04</div>
+        <div class="container">
+            <div class="page-header" style="text-align: center; margin-bottom: 60px;">
+                <h1 class="fade-in" data-i18n="portfolio.header.title">Portfolio Saya</h1>
+                <p class="fade-in-delay" data-i18n="portfolio.header.subtitle">Karya dan proyek yang telah saya kerjakan</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Project 1: Desain Mug -->
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-image" onclick="openMugGallery()">
+                        <img src="https://i.imgur.com/4sf6u59.jpeg" alt="Desain Mug">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3 data-i18n="portfolio.project.mug.title">Desain Mug</h3>
+                                <p data-i18n="portfolio.project.mug.cta">Klik untuk Lihat Galeri</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <div class="portfolio-header">
+                            <h3 data-i18n="portfolio.project.mug.title">Desain Mug</h3>
+                            <span class="portfolio-category">
+                                <i class="fas fa-palette"></i> <span data-i18n="portfolio.category.design">Design</span>
+                            </span>
+                        </div>
+                        <p class="portfolio-description" data-i18n="portfolio.project.mug.desc">
+                            Tugas jurusan ketika membuat desain untuk Mug. Proyek ini menunjukkan 
+                            kemampuan saya dalam desain grafis dan kreativitas visual.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Canva</span>
+                            <span class="tag" data-i18n="portfolio.tag.graphic_design">Graphic Design</span>
+                            <span class="tag" data-i18n="portfolio.tag.product_design">Product Design</span>
+                        </div>
+                        <div class="portfolio-actions">
+                            <button class="btn-small btn-primary" onclick="openMugGallery()">
+                                <i class="fas fa-images"></i> <span data-i18n="portfolio.project.mug.button">Lihat Galeri (2 Foto)</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Website Kelompok -->
+                <div class="portfolio-card fade-in-delay">
+                    <div class="portfolio-image">
+                        <img src="https://i.imgur.com/qokoNVG.png" alt="Website Kelompok">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3 data-i18n="portfolio.project.website.title">Website Kelompok</h3>
+                                <p data-i18n="portfolio.project.website.cta">Lihat Detail</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <div class="portfolio-header">
+                            <h3 data-i18n="portfolio.project.website.title">Website Kelompok</h3>
+                            <span class="portfolio-category">
+                                <i class="fas fa-code"></i> <span data-i18n="portfolio.category.web_dev">Web Development</span>
+                            </span>
+                        </div>
+                        <p class="portfolio-description" data-i18n="portfolio.project.website.desc">
+                            Tugas jurusan membuat website secara berkelompok, temanya journal game 
+                            dan reviewnya. Website ini menampilkan berbagai review dan informasi 
+                            tentang game.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag" data-i18n="portfolio.tag.team_project">Team Project</span>
+                        </div>
+                        <div class="portfolio-actions">
+                            <a href="https://game-journal-review.page.gd/" target="_blank" class="btn-small btn-primary">
+                                <i class="fas fa-external-link-alt"></i> <span data-i18n="portfolio.project.website.button">Lihat Website</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Online Shop -->
+                <div class="portfolio-card fade-in-delay-2">
+                    <div class="portfolio-image">
+                        <img src="https://i.imgur.com/QeVoAg3.png" alt="Online Shop">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <h3 data-i18n="portfolio.project.shop.title">Online Shop</h3>
+                                <p data-i18n="portfolio.project.shop.cta">Kunjungi Toko</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <div class="portfolio-header">
+                            <h3 data-i18n="portfolio.project.shop.title">Online Shop</h3>
+                            <span class="portfolio-category">
+                                <i class="fas fa-shopping-bag"></i> <span data-i18n="portfolio.category.ecommerce">E-Commerce</span>
+                            </span>
+                        </div>
+                        <p class="portfolio-description" data-i18n="portfolio.project.shop.desc">
+                            Toko online pribadi yang menjual berbagai produk menarik. Platform ini 
+                            menunjukkan kemampuan saya dalam mengelola bisnis online dan memberikan 
+                            layanan kepada pelanggan.
+                        </p>
+                        <div class="portfolio-tags">
+                            <span class="tag" data-i18n="portfolio.tag.ecommerce">E-Commerce</span>
+                            <span class="tag" data-i18n="portfolio.tag.online_business">Online Business</span>
+                            <span class="tag" data-i18n="portfolio.tag.customer_service">Customer Service</span>
+                        </div>
+                        <div class="portfolio-actions">
+                            <a href="https://s.id/draculis" target="_blank" class="btn-small btn-primary">
+                                <i class="fas fa-shopping-cart"></i> <span data-i18n="portfolio.project.shop.button">Kunjungi Toko</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEPARATOR -->
+    <div class="section-separator">
+        <div class="separator-icon">
+            <i class="fas fa-images"></i>
+        </div>
+    </div>
+
+    <!-- SECTION 5: GALLERY -->
+    <section id="gallery" class="gallery-page-content full-section">
+        <div class="section-number">05</div>
+        <div class="container">
+            <div class="page-header" style="text-align: center; margin-bottom: 60px;">
+                <h1 class="fade-in">Gallery</h1>
+                <p class="fade-in-delay">Dokumentasi aktivitas dan hobi yang saya sukai</p>
+            </div>
+            
+            <!-- Simple 3-Photo Gallery -->
+            <div class="simple-gallery">
+                <!-- Photo 1: Gym -->
+                <div class="gallery-item fade-in" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/5D69E2/ffffff?text=Gym+Workout', 'Gym & Workout')">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/500x400/5D69E2/ffffff?text=Gym+Workout" alt="Gym & Workout">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-caption">
+                        <div class="caption-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="caption-text">
+                            <h3>Gym & Workout</h3>
+                            <p>Aktivitas olahraga dan fitness untuk menjaga kesehatan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 2: Cycling -->
+                <div class="gallery-item fade-in-delay" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/1BFFFF/333333?text=Cycling+Adventure', 'Bersepeda')">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/500x400/1BFFFF/333333?text=Cycling" alt="Bersepeda">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-caption">
+                        <div class="caption-icon">
+                            <i class="fas fa-bicycle"></i>
+                        </div>
+                        <div class="caption-text">
+                            <h3>Bersepeda</h3>
+                            <p>Menjelajahi tempat-tempat baru dengan sepeda</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 3: Travel -->
+                <div class="gallery-item fade-in-delay-2" onclick="openPhotoLightbox('https://via.placeholder.com/800x600/FF6B9D/ffffff?text=Travel+Moments', 'Liburan & Traveling')">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/500x400/FF6B9D/ffffff?text=Traveling" alt="Liburan">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-caption">
+                        <div class="caption-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="caption-text">
+                            <h3>Liburan & Traveling</h3>
+                            <p>Momen-momen indah saat berlibur dan menjelajah</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEPARATOR -->
+    <div class="section-separator">
+        <div class="separator-icon">
+            <i class="fas fa-file-alt"></i>
+        </div>
+    </div>
+
+    <!-- SECTION 6: CV -->
+    <section id="cv" class="cv-content full-section">
+        <div class="section-number">06</div>
+        <div class="container">
+            <div class="page-header" style="text-align: center; margin-bottom: 60px;">
+                <h1 class="fade-in" data-i18n="cv.header.title">Curriculum Vitae</h1>
+                <p class="fade-in-delay" data-i18n="cv.header.subtitle">Profil profesional dan pengalaman saya</p>
+            </div>
+            
+            <div class="cv-layout">
+                <!-- Left Column -->
+                <div class="cv-sidebar">
+                    <!-- Profile Photo -->
+                    <div class="cv-photo fade-in">
+                        <img src="https://i.imgur.com/X41BcJf.jpeg" alt="Muhammad Galih Seto">
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="cv-section fade-in-delay">
+                        <h2><i class="fas fa-envelope"></i> <span data-i18n="cv.contact.title">Kontak</span></h2>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Semarang, Indonesia</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>tigergalss179@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>085161400118</span>
+                        </div>
+                    </div>
+
+                    <!-- Skills - Networking -->
+                    <div class="cv-section fade-in-delay">
+                        <h2><i class="fas fa-network-wired"></i> <span data-i18n="cv.skills.networking_title">Networking</span></h2>
+                        <ul class="cv-skill-list">
+                            <li data-i18n="cv.skills.networking1">Cisco Packet Tracer</li>
+                            <li data-i18n="cv.skills.networking2">Routing Dasar</li>
+                            <li data-i18n="cv.skills.networking3">Troubleshooting Jaringan</li>
+                            <li data-i18n="cv.skills.networking4">Konfigurasi Dasar Jaringan</li>
+                        </ul>
+                    </div>
+
+                    <!-- Skills - Web Dasar -->
+                    <div class="cv-section fade-in-delay">
+                        <h2><i class="fas fa-code"></i> <span data-i18n="cv.skills.web_title">Web Dasar</span></h2>
+                        <ul class="cv-skill-list">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li data-i18n="cv.skills.web3">JavaScript Dasar</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="cv-section fade-in-delay-2">
+                        <h2><i class="fas fa-tools"></i> <span data-i18n="cv.tools.title">Tools</span></h2>
+                        <ul class="cv-skill-list">
+                            <li>Canva</li>
+                            <li>CapCut</li>
+                            <li>Microsoft Office</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="cv-main">
+                    <!-- Tagline -->
+                    <div class="cv-tagline fade-in">
+                        <h1 data-i18n="cv.personal.name">Muhammad Galih Seto</h1>
+                        <p class="tagline" data-i18n="cv.personal.tagline">Pelajar SIJA | Fokus pada Networking & Infrastruktur IT</p>
+                    </div>
+
+                    <!-- About -->
+                    <div class="cv-section fade-in-delay">
+                        <h2><i class="fas fa-user-circle"></i> <span data-i18n="cv.about.title">Tentang Saya</span></h2>
+                        <p data-i18n="cv.about.description">
+                            Pelajar SMK jurusan SIJA dengan fokus pada bidang jaringan komputer dan infrastruktur IT. 
+                            Memiliki ketertarikan dalam konfigurasi jaringan, simulasi routing menggunakan Cisco Packet Tracer, 
+                            serta pengembangan kemampuan teknis melalui praktik langsung dan pembelajaran mandiri.
+                        </p>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="cv-section fade-in-delay">
+                        <h2><i class="fas fa-graduation-cap"></i> <span data-i18n="cv.education.title">Pendidikan</span></h2>
+                        <div class="cv-timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3 data-i18n="cv.education.smk">SMK Negeri 7 Semarang</h3>
+                                    <p class="timeline-period" data-i18n="cv.education.smk_period">2024 - Sekarang</p>
+                                    <p class="timeline-desc" data-i18n="cv.education.smk_major">SIJA (Sistem Informatika, Jaringan & Aplikasi)</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3 data-i18n="cv.education.smp">SMP Negeri 21 Semarang</h3>
+                                    <p class="timeline-period" data-i18n="cv.education.smp_period">2021 - 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Download Button -->
+                    <div class="cv-download fade-in-delay-2">
+                        <button class="btn btn-primary" onclick="window.print()">
+                            <i class="fas fa-download"></i> <span data-i18n="cv.download">Download CV (PDF)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-i18n="footer.copyright">Made with ❤️ by Muhammad Galih Seto © 2026</p>
+            <p class="footer-subtitle" data-i18n="footer.subtitle">Thanks for visiting! Feel free to reach out 🚀</p>
+        </div>
+    </footer>
+
+    <!-- ALL MODALS (from original pages) -->
     <!-- Info Modals -->
-    <!-- Education Modal -->
     <div id="educationModal" class="info-modal">
         <div class="info-modal-content">
-            <span class="info-modal-close" onclick="closeInfoModal('education')">&times;</span>
+            <span class="info-modal-close" onclick="closeInfoModal()">&times;</span>
             <div class="modal-header">
                 <div class="modal-icon">
                     <i class="fas fa-graduation-cap"></i>
@@ -131,48 +960,26 @@
             </div>
             <div class="modal-body">
                 <div class="modal-image">
-                    <img src="https://i.imgur.com/HMBBpAB.png" alt="SMK N 7 Semarang" loading="lazy" width="850" height="320">
+                    <img src="https://i.imgur.com/HMBBpAB.png" alt="SMK N 7 Semarang" loading="lazy">
                     <div class="image-caption">
-                        <i class="fas fa-map-marker-alt"></i> Jl. Simpang Lima No.1, Mugassari, Semarang
+                        <i class="fas fa-map-marker-alt"></i> SMK N 7 Semarang
                     </div>
                 </div>
                 <div class="modal-text">
                     <h3>SMK Negeri 7 Semarang</h3>
                     <p class="modal-subtitle">Jurusan SIJA (Sistem Informatika, Jaringan & Aplikasi)</p>
                     <p class="modal-description">
-                        Focused on routing, network configuration, and building reliable infrastructure systems. 
                         Di sekolah ini, saya mempelajari dasar-dasar networking, konfigurasi perangkat jaringan, 
-                        troubleshooting, dan keamanan sistem. Pengalaman hands-on dengan Cisco Packet Tracer dan 
-                        berbagai tools networking lainnya membantu saya memahami bagaimana infrastruktur jaringan 
-                        bekerja dalam dunia nyata.
+                        troubleshooting, dan keamanan sistem.
                     </p>
-                    <div class="modal-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Network Configuration & Routing</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Infrastructure Systems</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Cisco Packet Tracer</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Network Security Basics</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Focus Modal -->
     <div id="focusModal" class="info-modal">
         <div class="info-modal-content">
-            <span class="info-modal-close" onclick="closeInfoModal('focus')">&times;</span>
+            <span class="info-modal-close" onclick="closeInfoModal()">&times;</span>
             <div class="modal-header">
                 <div class="modal-icon">
                     <i class="fas fa-bullseye"></i>
@@ -180,96 +987,77 @@
                 <h2>Fokus Keahlian</h2>
             </div>
             <div class="modal-body">
-                <div class="modal-image">
-                    <img src="https://i.imgur.com/4OuHA28.png" alt="Cyber Security & Networking" loading="lazy" width="850" height="320">
-                    <div class="image-caption">
-                        <i class="fas fa-shield-alt"></i> Cyber Security & Networking
-                    </div>
-                </div>
                 <div class="modal-text">
                     <h3>Cyber Security & Networking</h3>
                     <p class="modal-subtitle">Keamanan Jaringan & Infrastruktur</p>
                     <p class="modal-description">
-                        Saya fokus pada bidang keamanan jaringan dan pengelolaan infrastruktur IT. 
-                        Minat saya meliputi network security, routing protocols, firewall configuration, 
-                        dan monitoring sistem jaringan. Saya terus belajar tentang best practices dalam 
-                        mengamankan jaringan dan membangun infrastruktur yang reliable dan scalable.
+                        Saya fokus pada bidang keamanan jaringan dan pengelolaan infrastruktur IT.
                     </p>
-                    <div class="modal-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Network Security & Firewall</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Routing & Switching</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Infrastructure Management</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Network Monitoring & Troubleshooting</span>
-                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="goalsModal" class="info-modal">
+        <div class="info-modal-content">
+            <span class="info-modal-close" onclick="closeInfoModal()">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h2>Cita-cita</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-text">
+                    <h3>Bekerja di Luar Negeri & Traveling Dunia</h3>
+                    <p class="modal-description">
+                        Saya bermimpi untuk bekerja di perusahaan teknologi internasional dan 
+                        menjelajahi berbagai negara di dunia.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mug Gallery Modal -->
+    <div id="mugGalleryModal" class="gallery-modal">
+        <span class="gallery-close" onclick="closeGallery()">&times;</span>
+        <div class="gallery-content">
+            <h2 class="gallery-title">Desain Mug - Galeri</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/4sf6u59.jpeg', 'Desain Mug - Sebelum Jadi')">
+                    <img src="https://i.imgur.com/4sf6u59.jpeg" alt="Desain Mug - Sebelum Jadi">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <p>Desain Sebelum Jadi</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/GunamKs.png', 'Desain Mug - Hasil Jadi')">
+                    <img src="https://i.imgur.com/GunamKs.png" alt="Desain Mug - Hasil Jadi">
+                    <div class="gallery-item-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <p>Hasil Jadi</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Goals Modal -->
-    <div id="goalsModal" class="info-modal">
-        <div class="info-modal-content">
-            <span class="info-modal-close" onclick="closeInfoModal('goals')">&times;</span>
-            <div class="modal-header">
-                <div class="modal-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h2>Career Goals</h2>
-            </div>
-            <div class="modal-body">
-                <div class="modal-image">
-                    <img src="https://i.imgur.com/HmLW55M.png" alt="Career Goals" loading="lazy" width="850" height="320">
-                    <div class="image-caption">
-                        <i class="fas fa-map-marked-alt"></i> Europe & International
-                    </div>
-                </div>
-                <div class="modal-text">
-                    <h3>Karir Internasional di Bidang IT</h3>
-                    <p class="modal-subtitle">Network Engineer / Infrastructure Specialist</p>
-                    <p class="modal-description">
-                        Tujuan jangka panjang saya adalah membangun karir di industri IT, khususnya dalam 
-                        infrastruktur jaringan dan operasi sistem. Saya ingin bekerja di lingkungan internasional, 
-                        terutama di Eropa, di mana saya dapat memperoleh pengalaman global dan meningkatkan 
-                        keterampilan teknis serta profesional saya.
-                    </p>
-                    <p class="modal-description">
-                        Saya tertarik pada peran seperti Network Engineer atau Infrastructure Specialist, di mana 
-                        saya dapat merancang, mengelola, dan memelihara sistem jaringan yang andal. Bekerja di 
-                        luar negeri tidak hanya akan meningkatkan keahlian teknis saya, tetapi juga memperluas 
-                        pemahaman budaya dan jaringan profesional saya.
-                    </p>
-                    <div class="modal-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Network Engineer / Infrastructure Specialist</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Lingkungan Kerja Internasional (Eropa)</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Merancang & Mengelola Sistem Jaringan</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Pengalaman Global & Pertumbuhan Profesional</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Photo Lightbox -->
+    <div id="photoLightbox" class="lightbox-modal">
+        <span class="lightbox-close" onclick="closePhotoLightbox()">&times;</span>
+        <div class="lightbox-content">
+            <img id="photoLightboxImage" src="" alt="">
+            <div class="lightbox-caption" id="photoLightboxCaption"></div>
         </div>
     </div>
 
@@ -281,25 +1069,16 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3>Quick Links</h3>
+            <h3 data-i18n="sidebar.title">Quick Links</h3>
             <button class="sidebar-close" onclick="toggleSidebar()">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         
         <div class="sidebar-content">
-            <!-- My Phone -->
-            <div class="sidebar-section">
-                <h4><i class="fas fa-mobile-alt"></i> My Phone</h4>
-                <button class="sidebar-link" onclick="openPhone()" style="width: 100%; text-align: left; background: none; border: none; cursor: pointer;">
-                    <i class="fas fa-mobile-alt"></i>
-                    Open My Phone
-                </button>
-            </div>
-
             <!-- Contact -->
             <div class="sidebar-section">
-                <h4><i class="fas fa-envelope"></i> Contact</h4>
+                <h4><i class="fas fa-envelope"></i> <span data-i18n="sidebar.contact_title">Contact</span></h4>
                 <a href="mailto:tigergalss179@gmail.com" class="sidebar-link">
                     <i class="fas fa-paper-plane"></i>
                     tigergalss179@gmail.com
@@ -329,251 +1108,61 @@
     <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-    <!-- Secret Photo Modal -->
-    <div id="secretPhotoModal" class="secret-photo-modal">
-        <div class="secret-photo-content">
-            <span class="secret-photo-close" onclick="closeSecretPhoto()">&times;</span>
-            <div class="secret-photo-wrapper">
-                <img src="https://i.imgur.com/xiZu5E2.png" alt="Secret Photo" loading="lazy" width="600" height="600">
-                <div class="secret-photo-caption">
-                    <h3>🎭 Easter Egg Found!</h3>
-                    <p>Kamu menemukan foto rahasia! Klik tombol di bawah untuk mengubah tema.</p>
-                    <button class="theme-toggle-btn" onclick="toggleDarkTheme()">
-                        <i class="fas fa-moon"></i> <span id="themeText">Aktifkan Dark Mode</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Phone Modal -->
-    <div id="phoneModal" class="phone-modal">
-        <div class="phone-container">
-            <!-- Phone Frame -->
-            <div class="phone-frame">
-                <!-- Phone Screen -->
-                <div class="phone-screen" id="phoneScreen">
-                    <!-- Home Screen -->
-                    <div class="phone-home active" id="phoneHome">
-                        <div class="phone-status-bar">
-                            <span class="phone-time" id="phoneTime">12:00</span>
-                            <div class="phone-icons">
-                                <i class="fas fa-wifi"></i>
-                                <i class="fas fa-battery-full"></i>
-                            </div>
-                        </div>
-                        <div class="phone-wallpaper">
-                            <h2 class="phone-greeting">Galih's Phone</h2>
-                            <p class="phone-date" id="phoneDate">Monday, January 1</p>
-                        </div>
-                        <div class="phone-apps">
-                            <div class="phone-app" onclick="openApp('schedule')">
-                                <div class="app-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
-                                    <i class="fas fa-calendar-alt"></i>
-                                </div>
-                                <span>Jadwal</span>
-                            </div>
-                            <div class="phone-app" onclick="openApp('tasks')">
-                                <div class="app-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
-                                    <i class="fas fa-tasks"></i>
-                                </div>
-                                <span>Tasks</span>
-                            </div>
-                            <div class="phone-app" onclick="openApp('game')">
-                                <div class="app-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
-                                    <i class="fas fa-gamepad"></i>
-                                </div>
-                                <span>Game</span>
-                            </div>
-                        </div>
-                        <div class="phone-home-button" onclick="closePhone()">
-                            <div class="home-indicator"></div>
-                        </div>
-                    </div>
-
-                    <!-- Schedule App -->
-                    <div class="phone-app-screen" id="scheduleApp">
-                        <div class="app-header">
-                            <button class="app-back" onclick="closeApp()"><i class="fas fa-arrow-left"></i></button>
-                            <h3>Jadwal Mingguan</h3>
-                            <div></div>
-                        </div>
-                        <div class="app-content">
-                            <div class="calendar-grid" id="calendarGrid">
-                                <div class="calendar-day" onclick="showDaySchedule('senin')">
-                                    <div class="day-header">Senin</div>
-                                    <div class="day-icon">📚</div>
-                                </div>
-                                <div class="calendar-day" onclick="showDaySchedule('selasa')">
-                                    <div class="day-header">Selasa</div>
-                                    <div class="day-icon">💻</div>
-                                </div>
-                                <div class="calendar-day" onclick="showDaySchedule('rabu')">
-                                    <div class="day-header">Rabu</div>
-                                    <div class="day-icon">🌐</div>
-                                </div>
-                                <div class="calendar-day" onclick="showDaySchedule('kamis')">
-                                    <div class="day-header">Kamis</div>
-                                    <div class="day-icon">💪</div>
-                                </div>
-                                <div class="calendar-day" onclick="showDaySchedule('jumat')">
-                                    <div class="day-header">Jumat</div>
-                                    <div class="day-icon">🔍</div>
-                                </div>
-                                <div class="calendar-day weekend" onclick="showDaySchedule('sabtu')">
-                                    <div class="day-header">Sabtu</div>
-                                    <div class="day-icon">🎮</div>
-                                </div>
-                                <div class="calendar-day weekend" onclick="showDaySchedule('minggu')">
-                                    <div class="day-header">Minggu</div>
-                                    <div class="day-icon">😴</div>
-                                </div>
-                            </div>
-                            <p class="schedule-hint">👆 Klik salah satu hari untuk melihat jadwal</p>
-                        </div>
-                    </div>
-
-                    <!-- Schedule Detail Screen -->
-                    <div class="phone-app-screen" id="scheduleDetailScreen">
-                        <div class="app-header">
-                            <button class="app-back" onclick="backToCalendar()"><i class="fas fa-arrow-left"></i></button>
-                            <h3 id="scheduleDetailTitle">Jadwal</h3>
-                            <div></div>
-                        </div>
-                        <div class="app-content">
-                            <div id="scheduleDetailContent"></div>
-                        </div>
-                    </div>
-
-                    <!-- Tasks App -->
-                    <div class="phone-app-screen" id="tasksApp">
-                        <div class="app-header">
-                            <button class="app-back" onclick="closeApp()"><i class="fas fa-arrow-left"></i></button>
-                            <h3>My Tasks</h3>
-                            <div></div>
-                        </div>
-                        <div class="app-content">
-                            <div class="task-list">
-                                <div class="task-item">
-                                    <input type="checkbox" id="task1" checked>
-                                    <label for="task1">Belajar Cisco Packet Tracer</label>
-                                </div>
-                                <div class="task-item">
-                                    <input type="checkbox" id="task2" checked>
-                                    <label for="task2">Update Portfolio Website</label>
-                                </div>
-                                <div class="task-item">
-                                    <input type="checkbox" id="task3">
-                                    <label for="task3">Latihan Network Security</label>
-                                </div>
-                                <div class="task-item">
-                                    <input type="checkbox" id="task4">
-                                    <label for="task4">Workout di Gym</label>
-                                </div>
-                                <div class="task-item">
-                                    <input type="checkbox" id="task5">
-                                    <label for="task5">Belajar Python Basics</label>
-                                </div>
-                                <div class="task-item">
-                                    <input type="checkbox" id="task6">
-                                    <label for="task6">Editing Video Project</label>
-                                </div>
-                                <div class="task-item">
-                                    <input type="checkbox" id="task7">
-                                    <label for="task7">Cycling Weekend</label>
-                                </div>
-                            </div>
-                            <div class="task-progress">
-                                <h4>Progress Today</h4>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" id="taskProgress" style="width: 28%"></div>
-                                </div>
-                                <p class="progress-text"><span id="taskCompleted">2</span> of <span id="taskTotal">7</span> completed</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Game App -->
-                    <div class="phone-app-screen" id="gameApp">
-                        <div class="app-header">
-                            <button class="app-back" onclick="closeApp()"><i class="fas fa-arrow-left"></i></button>
-                            <h3>� Stack Tower</h3>
-                            <div></div>
-                        </div>
-                        
-                        <!-- Loading Screen -->
-                        <div class="game-loading" id="gameLoading">
-                            <div class="loading-content">
-                                <div class="loading-icon">🎮</div>
-                                <h3>Stack Tower</h3>
-                                <div class="loading-bar">
-                                    <div class="loading-progress" id="loadingProgress"></div>
-                                </div>
-                                <p class="loading-text" id="loadingText">Initializing Simulation...</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Game Content -->
-                        <div class="app-content game-content" id="gameContent" style="display: none;">
-                            <div class="game-container">
-                                <div class="game-stats">
-                                    <div class="stat-item">
-                                        <span class="stat-label">Score</span>
-                                        <span class="stat-value" id="gameScore">0</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Best</span>
-                                        <span class="stat-value" id="gameBest">0</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="game-canvas-wrapper">
-                                    <canvas id="gameCanvas" width="280" height="400"></canvas>
-                                    <div class="game-overlay" id="gameOverlay">
-                                        <div class="game-start-message">
-                                            <h3>🎯 Stack Tower</h3>
-                                            <p>Tap untuk mulai!</p>
-                                            <p class="game-hint">Tumpuk balok setinggi mungkin</p>
-                                        </div>
-                                    </div>
-                                    <div class="game-over-overlay" id="gameOverOverlay" style="display: none;">
-                                        <div class="game-over-content">
-                                            <h2>🎮 Game Over!</h2>
-                                            <p class="final-score">Score: <span id="finalScore">0</span></p>
-                                            <button class="game-button" onclick="restartStackGame()">
-                                                <i class="fas fa-redo"></i> Main Lagi
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button class="game-button" id="stackButton" onclick="stackBlock()">
-                                    <i class="fas fa-hand-pointer"></i> TAP!
-                                </button>
-                                
-                                <div class="game-instructions">
-                                    <p>💡 Tap saat balok sejajar untuk menumpuk!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="phone-close" onclick="closePhone()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p data-i18n="footer.copyright">Made with ❤️ by Muhammad Galih Seto © 2026</p>
-            <p class="footer-subtitle" data-i18n="footer.subtitle">Thanks for visiting! Feel free to reach out 🚀</p>
-        </div>
-    </footer>
-
     <script src="translations.js"></script>
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // Smooth scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        // Update active indicator on scroll
+        let isScrolling;
+        window.addEventListener('scroll', function() {
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(function() {
+                const sections = ['home', 'about', 'skills', 'portfolio', 'gallery', 'cv'];
+                const indicators = document.querySelectorAll('.section-indicator');
+                const navLinks = document.querySelectorAll('.nav-menu a');
+                
+                let currentSection = '';
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        const rect = section.getBoundingClientRect();
+                        if (rect.top <= 150 && rect.bottom >= 150) {
+                            currentSection = sectionId;
+                        }
+                    }
+                });
+                
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', sections[index] === currentSection);
+                });
+                
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    link.classList.toggle('active', href === '#' + currentSection);
+                });
+            }, 100);
+        });
+        
+        // Enhanced lightbox functions
+        window.openLightbox = function(src, caption) {
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImage');
+            const cap = document.getElementById('lightboxCaption');
+            if (modal && img) {
+                img.src = src;
+                if (cap) cap.textContent = caption || '';
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        };
+    </script>
 </body>
 </html>
