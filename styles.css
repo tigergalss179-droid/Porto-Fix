@@ -23,6 +23,11 @@
     --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+html {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
@@ -30,6 +35,7 @@ body {
     background: var(--bg-gradient);
     overflow-x: hidden;
     position: relative;
+    max-width: 100vw;
 }
 
 /* ===== HIDE SCROLLBAR GLOBALLY ===== */
@@ -5452,7 +5458,19 @@ body.dark-theme .lang-btn.active {
     color: white;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+}
+
+.cv-section h2 i {
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+}
+
+.cv-section h2 span {
+    flex: 1;
+    min-width: 0;
 }
 
 .cv-skill-list {
@@ -5492,10 +5510,18 @@ body.dark-theme .lang-btn.active {
 .contact-item i {
     color: rgba(255, 255, 255, 0.9);
     width: 24px;
+    min-width: 24px;
+    flex-shrink: 0;
     text-align: center;
 }
 
-/* Portfolio grid for single-page */
+.contact-item span {
+    flex: 1;
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+/* Portfolio grid for single-page - 4 PROJECTS LAYOUT */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -5503,24 +5529,40 @@ body.dark-theme .lang-btn.active {
     margin-top: 40px;
 }
 
-/* Center the third card beautifully */
-.portfolio-grid .portfolio-card:nth-child(3) {
-    grid-column: 1 / -1;
-    max-width: 650px;
-    margin: 0 auto;
-}
-
+/* All 4 cards equal width and height - Perfect 2x2 grid */
 .portfolio-card {
     background: white;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-card:hover {
     transform: translateY(-12px);
     box-shadow: 0 20px 50px rgba(93, 105, 226, 0.2);
+}
+
+.portfolio-image {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.portfolio-info {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.portfolio-description {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
 }
 
 .portfolio-image {
@@ -5855,4 +5897,322 @@ img {
 
 .fade-in-delay-3.visible {
     transition-delay: 0.6s;
+}
+
+/* ========================================
+   MOBILE PERFORMANCE OPTIMIZATION
+   60 FPS TARGET - DISABLE HEAVY EFFECTS
+   ======================================== */
+
+@media (max-width: 768px) {
+    
+    /* === DISABLE BACKDROP-FILTER (GPU INTENSIVE) === */
+    .navbar,
+    .info-card,
+    .about-card,
+    .skill-item,
+    .portfolio-card,
+    .info-box,
+    .sidebar,
+    .info-modal-content,
+    .secret-photo-wrapper,
+    .btn-secondary,
+    .hero-profile-img {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Replace with solid semi-transparent backgrounds */
+    .navbar {
+        background: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .info-card,
+    .about-card,
+    .skill-item,
+    .portfolio-card,
+    .info-box {
+        background: rgba(255, 255, 255, 0.95) !important;
+    }
+    
+    .sidebar {
+        background: rgba(255, 255, 255, 0.98) !important;
+    }
+    
+    .info-modal-content,
+    .secret-photo-wrapper {
+        background: rgba(255, 255, 255, 0.98) !important;
+    }
+    
+    /* === DISABLE 3D TRANSFORMS === */
+    .info-card,
+    .portfolio-card {
+        transform-style: flat !important;
+        transform: none !important;
+    }
+    
+    /* === SIMPLIFY HOVER EFFECTS (NO HOVER ON MOBILE) === */
+    .info-card:hover,
+    .about-card:hover,
+    .skill-item:hover,
+    .portfolio-card:hover {
+        transform: none !important;
+        box-shadow: 0 8px 24px rgba(93, 105, 226, 0.12) !important;
+    }
+    
+    /* === ADD HARDWARE ACCELERATION TO ANIMATED ELEMENTS === */
+    .hero-content,
+    .info-card,
+    .about-card,
+    .skill-item,
+    .portfolio-card,
+    .gallery-item,
+    .section-separator,
+    .section-number {
+        will-change: transform, opacity;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+    
+    /* === REDUCE ANIMATION COMPLEXITY === */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+    }
+    
+    /* === DISABLE BACKGROUND ANIMATIONS === */
+    body::before {
+        animation: none !important;
+    }
+    
+    /* === FIX OFFSIDE LAYOUT === */
+    html, body {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+    
+    .container {
+        max-width: 100% !important;
+        padding: 0 16px !important;
+        overflow-x: hidden !important;
+    }
+    
+    .full-section {
+        padding: 60px 0 !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* === FIX NAVBAR MOBILE === */
+    .navbar {
+        padding: 0.75rem 0 !important;
+    }
+    
+    .nav-container {
+        padding: 0 16px !important;
+    }
+    
+    /* === FIX INFO CARDS GRID === */
+    .quick-info {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        padding: 0 !important;
+    }
+    
+    .info-card {
+        padding: 1.5rem !important;
+        margin: 0 !important;
+    }
+    
+    /* === FIX ABOUT CARDS === */
+    .about-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    .about-card {
+        padding: 1.8rem !important;
+    }
+    
+    /* === FIX SKILLS GRID === */
+    .skills-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    .skill-item {
+        padding: 1.8rem !important;
+    }
+    
+    /* === FIX PORTFOLIO GRID (4 PROJECTS) === */
+    .portfolio-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    
+    .portfolio-card {
+        padding: 0 !important;
+        margin: 0 auto !important;
+        max-width: 100% !important;
+    }
+    
+    /* === FIX GALLERY GRID === */
+    .simple-gallery {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    
+    .gallery-item {
+        margin: 0 !important;
+    }
+    
+    /* === FIX CV LAYOUT === */
+    .cv-layout {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    
+    .cv-sidebar {
+        padding: 2rem 1.5rem !important;
+    }
+    
+    .cv-main {
+        padding: 2rem 1.5rem !important;
+    }
+    
+    .cv-section h2 {
+        font-size: 1.1rem !important;
+        gap: 0.6rem !important;
+    }
+    
+    .cv-section h2 i {
+        width: 20px !important;
+        min-width: 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .contact-item {
+        font-size: 0.88rem !important;
+        gap: 10px !important;
+    }
+    
+    .contact-item i {
+        width: 20px !important;
+        min-width: 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* === REDUCE SHADOWS ON MOBILE === */
+    .info-card,
+    .about-card,
+    .skill-item,
+    .portfolio-card,
+    .gallery-item {
+        box-shadow: 0 4px 12px rgba(93, 105, 226, 0.1) !important;
+    }
+    
+    /* === SIMPLIFY SECTION SEPARATORS === */
+    .section-separator {
+        height: 80px !important;
+    }
+    
+    .section-separator::after {
+        animation: none !important;
+    }
+    
+    .separator-icon {
+        animation: pulse 3s ease-in-out infinite !important;
+        font-size: 20px !important;
+        padding: 12px !important;
+    }
+    
+    /* === SIMPLIFY SECTION NUMBERS === */
+    .section-number {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 18px !important;
+        left: 16px !important;
+        top: 70px !important;
+    }
+    
+    .section-number::before {
+        animation: none !important;
+    }
+    
+    /* === DISABLE SCROLL SNAP ON MOBILE === */
+    html {
+        scroll-snap-type: none !important;
+    }
+    
+    .full-section {
+        scroll-snap-align: none !important;
+    }
+    
+    /* === FIX SECTION INDICATORS === */
+    .section-indicators {
+        right: 12px !important;
+        gap: 8px !important;
+    }
+    
+    .section-indicator {
+        width: 8px !important;
+        height: 8px !important;
+    }
+    
+    .section-indicator::after {
+        display: none !important;
+    }
+    
+    /* === OPTIMIZE IMAGE RENDERING === */
+    img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+    
+    /* === REDUCE TRANSITION TIMES === */
+    * {
+        transition-duration: 0.2s !important;
+    }
+    
+    /* === PREVENT TEXT INFLATION === */
+    html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+}
+
+/* === EXTRA SMALL MOBILE (320px - 480px) === */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px !important;
+    }
+    
+    .info-card,
+    .about-card,
+    .skill-item {
+        padding: 1.2rem !important;
+    }
+    
+    .section-number {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 16px !important;
+        left: 12px !important;
+        top: 60px !important;
+    }
+    
+    .full-section {
+        padding: 50px 0 !important;
+    }
 }

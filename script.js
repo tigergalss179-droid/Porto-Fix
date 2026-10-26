@@ -864,17 +864,17 @@ function updateActiveSection() {
     });
 }
 
-// Throttled scroll handler for performance
-let scrollTimeout;
+// Throttled scroll handler for performance with RAF + passive
+let scrollTicking = false;
 window.addEventListener('scroll', function() {
-    if (scrollTimeout) {
-        window.cancelAnimationFrame(scrollTimeout);
+    if (!scrollTicking) {
+        scrollTicking = true;
+        window.requestAnimationFrame(function() {
+            updateActiveSection();
+            scrollTicking = false;
+        });
     }
-    
-    scrollTimeout = window.requestAnimationFrame(function() {
-        updateActiveSection();
-    });
-});
+}, { passive: true });
 
 // Update on page load
 window.addEventListener('load', function() {
@@ -909,29 +909,34 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Update URL hash when scrolling (without triggering scroll)
+// Update URL hash when scrolling (without triggering scroll) - Optimized with passive
 let hashUpdateTimeout;
+let hashTicking = false;
 window.addEventListener('scroll', function() {
-    clearTimeout(hashUpdateTimeout);
-    hashUpdateTimeout = setTimeout(function() {
-        const sections = ['home', 'about', 'skills', 'portfolio', 'gallery', 'cv'];
-        const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
-        
-        for (let i = sections.length - 1; i >= 0; i--) {
-            const section = document.getElementById(sections[i]);
-            if (section) {
-                const rect = section.getBoundingClientRect();
-                if (rect.top <= navbarHeight + 100) {
-                    // Update URL without scrolling
-                    if (window.location.hash !== '#' + sections[i]) {
-                        history.replaceState(null, null, '#' + sections[i]);
+    if (!hashTicking) {
+        clearTimeout(hashUpdateTimeout);
+        hashUpdateTimeout = setTimeout(function() {
+            const sections = ['home', 'about', 'skills', 'portfolio', 'gallery', 'cv'];
+            const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+            
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = document.getElementById(sections[i]);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= navbarHeight + 100) {
+                        // Update URL without scrolling
+                        if (window.location.hash !== '#' + sections[i]) {
+                            history.replaceState(null, null, '#' + sections[i]);
+                        }
+                        break;
                     }
-                    break;
                 }
             }
-        }
-    }, 300);
-});
+            hashTicking = false;
+        }, 300);
+        hashTicking = true;
+    }
+}, { passive: true });
 
 // Prevent default anchor link behavior and use smooth scroll
 document.addEventListener('DOMContentLoaded', function() {
