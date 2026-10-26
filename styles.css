@@ -5859,11 +5859,13 @@ body.dark-mode .hobby-item:hover {
 
 /* Loading animation for images */
 img {
-    opacity: 0;
     animation: imageLoad 0.5s ease forwards;
 }
 
 @keyframes imageLoad {
+    from {
+        opacity: 0.3;
+    }
     to {
         opacity: 1;
     }

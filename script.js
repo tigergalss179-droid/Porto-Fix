@@ -994,3 +994,51 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 console.log('✅ Single-page scroll enhancements loaded');
+
+
+// ===== PRINT CV FUNCTION (ONLY CV SECTION) =====
+window.printCV = function() {
+    // Store original styles
+    const originalBodyClass = document.body.className;
+    const sections = document.querySelectorAll('.full-section:not(#cv)');
+    const navbar = document.querySelector('.navbar');
+    const separators = document.querySelectorAll('.section-separator');
+    const indicators = document.querySelector('.section-indicators');
+    const sectionNumbers = document.querySelectorAll('.section-number');
+    const cvSection = document.getElementById('cv');
+    
+    // Hide everything except CV section
+    sections.forEach(section => section.style.display = 'none');
+    if (navbar) navbar.style.display = 'none';
+    separators.forEach(sep => sep.style.display = 'none');
+    if (indicators) indicators.style.display = 'none';
+    sectionNumbers.forEach(num => num.style.display = 'none');
+    
+    // Add print class to CV section
+    if (cvSection) {
+        cvSection.style.padding = '0';
+        cvSection.style.minHeight = 'auto';
+    }
+    
+    // Add print-mode class
+    document.body.classList.add('print-mode');
+    
+    // Print
+    window.print();
+    
+    // Restore everything after print dialog closes
+    setTimeout(() => {
+        sections.forEach(section => section.style.display = '');
+        if (navbar) navbar.style.display = '';
+        separators.forEach(sep => sep.style.display = '');
+        if (indicators) indicators.style.display = '';
+        sectionNumbers.forEach(num => num.style.display = '');
+        
+        if (cvSection) {
+            cvSection.style.padding = '';
+            cvSection.style.minHeight = '';
+        }
+        
+        document.body.className = originalBodyClass;
+    }, 500);
+};
